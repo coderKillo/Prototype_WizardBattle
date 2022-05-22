@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollowHead : MonoBehaviour
@@ -9,5 +7,6 @@ public class CameraFollowHead : MonoBehaviour
     void LateUpdate()
     {
         transform.position = head.position;
+        transform.localRotation = head.localRotation;
     }
 }

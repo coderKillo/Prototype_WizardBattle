@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+public class FirstPersonController : MonoBehaviour
 {
     [Header("References")]
-    public Transform playerCam;
+    public Transform head;
     public Transform orientation;
+    private Rigidbody rb;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 4500;
@@ -45,9 +44,6 @@ public class PlayerController : MonoBehaviour
     private bool inputSprinting;
     private bool inputCrouching;
 
-    // Reference
-    private Rigidbody rb;
-
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -77,7 +73,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
-        Debug.Log("OnMove");
         inputMove = value.Get<Vector2>();
     }
 
@@ -179,13 +174,13 @@ public class PlayerController : MonoBehaviour
         float mouseX = inputLook.x * sensitivity * Time.deltaTime * sensMultiplier;
         float mouseY = inputLook.y * sensitivity * Time.deltaTime * sensMultiplier;
 
-        Vector3 playerCamRotation = playerCam.transform.localRotation.eulerAngles;
+        Vector3 playerCamRotation = head.transform.localRotation.eulerAngles;
         yRotation = playerCamRotation.y + mouseX;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        playerCam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        head.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.transform.localRotation = Quaternion.Euler(0, yRotation, 0);
     }
 
