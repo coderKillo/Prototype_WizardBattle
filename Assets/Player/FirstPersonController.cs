@@ -7,6 +7,7 @@ public class FirstPersonController : MonoBehaviour
     [Header("References")]
     public Transform head;
     public Transform orientation;
+    public Transform body;
     private Rigidbody rb;
 
     [Header("Movement")]
@@ -28,7 +29,7 @@ public class FirstPersonController : MonoBehaviour
     [Header("Crouch & Slide")]
     [SerializeField] private float slideForce = 400;
     [SerializeField][Range(0f, 1f)] private float slideCounterMovement = 0.2f;
-    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
+    private Vector3 crouchScale;
     private Vector3 playerScale;
 
     [Header("Jumping")]
@@ -51,7 +52,10 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-        playerScale = transform.localScale;
+        playerScale = body.transform.localScale;
+        crouchScale = playerScale;
+        crouchScale.y *= 0.5f;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -278,8 +282,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void StartCrouch()
     {
-        transform.localScale = crouchScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        body.transform.localScale = crouchScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y * crouchScale.y, transform.position.z);
         if (rb.velocity.magnitude > 0.5f)
         {
             if (grounded)
@@ -291,8 +295,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void StopCrouch()
     {
-        transform.localScale = playerScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        body.transform.localScale = playerScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y * crouchScale.y, transform.position.z);
     }
 
     ////////////////////////////////////////////////////////////////////////////////
