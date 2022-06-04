@@ -283,7 +283,6 @@ public class FirstPersonController : MonoBehaviour
     private void StartCrouch()
     {
         body.transform.localScale = crouchScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y * crouchScale.y, transform.position.z);
         if (rb.velocity.magnitude > 0.5f)
         {
             if (grounded)
@@ -296,7 +295,6 @@ public class FirstPersonController : MonoBehaviour
     private void StopCrouch()
     {
         body.transform.localScale = playerScale;
-        transform.position = new Vector3(transform.position.x, transform.position.y * crouchScale.y, transform.position.z);
     }
 
     ////////////////////////////////////////////////////////////////////////////////
