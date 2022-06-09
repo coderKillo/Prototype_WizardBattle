@@ -2491,7 +2491,7 @@ MonoBehaviour:
   maxSlopeAngle: 35
   sensitivity: 30
   sensMultiplier: 0.5
-  slideForce: 400
+  slideForce: 800
   slideCounterMovement: 0.2
   jumpForce: 550
 --- !u!114 &4215889442368933369
