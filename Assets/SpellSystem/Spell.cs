@@ -16,11 +16,11 @@ public class Spell : ScriptableObject
     [Header("Animation")]
     public String animation;
     public float castDelay;
+    [ColorUsage(true, true)]
     public Color wandGlowColor;
 
     public virtual void CastSpell(SpellManager manager) { }
 
     public void Lock() { isUsable = false; }
     public void Unlock() { isUsable = true; }
-
 }

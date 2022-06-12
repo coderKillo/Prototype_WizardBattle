@@ -8,10 +8,22 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private Transform rayCastRef;
     [SerializeField] private LayerMask mask;
     [SerializeField] private Animator animator;
+    [SerializeField] private Wand wand;
 
     [Header("Spells")]
     [SerializeField] private Spell[] slots;
     public Spell[] Slots { get { return slots; } }
+
+    static private SpellManager instance = null;
+    static public SpellManager Instance { get { return instance; } }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void OnFire(InputValue value)
     {
@@ -40,7 +52,7 @@ public class SpellManager : MonoBehaviour
         animator.Play(spell.animation);
         yield return new WaitForSeconds(spell.castDelay);
 
-        // TODO: wand glow
+        wand.SetGlowColor(spell.wandGlowColor);
 
         spell.CastSpell(this);
 

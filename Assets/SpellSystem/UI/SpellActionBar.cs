@@ -11,7 +11,6 @@ public class SpellActionBar : MonoBehaviour
     [SerializeField] private String[] spellButtons;
     // TODO: read spell buttons from Player Input Manager
     [SerializeField] private GameObject spellButtonPrefab;
-    [SerializeField] private SpellManager manager;
 
     private GameObject mainSpellBar;
     private GameObject sideSpellBar;
@@ -21,7 +20,7 @@ public class SpellActionBar : MonoBehaviour
         mainSpellBar = gameObject.transform.GetChild(0).gameObject;
         sideSpellBar = gameObject.transform.GetChild(1).gameObject;
 
-        for (int i = 0; i < manager.SlotLength(); i++)
+        for (int i = 0; i < SpellManager.Instance.SlotLength(); i++)
         {
             var bar = i < 2 ? sideSpellBar.transform : mainSpellBar.transform;
 
@@ -31,7 +30,7 @@ public class SpellActionBar : MonoBehaviour
             }
 
             bar.GetChild(i).Find("Hotkey").GetComponent<TextMeshProUGUI>().text = spellButtons[i];
-            bar.GetChild(i).Find("Icon").GetComponent<Image>().sprite = manager.Slot(i).icon;
+            bar.GetChild(i).Find("Icon").GetComponent<Image>().sprite = SpellManager.Instance.Slot(i).icon;
         }
     }
 }
