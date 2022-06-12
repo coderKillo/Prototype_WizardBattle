@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells/ForcePullSpell")]
-public class ForcePullSpell : Spell
+[CreateAssetMenu(menuName = "Spells/Force")]
+public class ForceSpell : Spell
 {
     [Header("Spell Parameter")]
-    [SerializeField] private float force = 2000f;
-    [SerializeField] private float upwardsForceScale = 1f;
+    [SerializeField] private float forcePull = 800f;
+    [SerializeField] private float upwardsForceScale = 0.3f;
 
     public override void CastSpell(SpellManager manager)
     {
@@ -18,6 +18,6 @@ public class ForcePullSpell : Spell
         if (rigidbody == null) return;
 
         Vector3 forceDirection = Vector3.back + (upwardsForceScale * Vector3.up);
-        rigidbody.AddForce(manager.AimDirection().TransformDirection(forceDirection) * force);
+        rigidbody.AddForce(manager.AimDirection().TransformDirection(forceDirection) * forcePull);
     }
 }

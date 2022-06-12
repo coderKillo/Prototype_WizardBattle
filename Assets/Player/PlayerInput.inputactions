@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Player",
@@ -22,9 +22,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "FirePrimary",
                     "type": "Button",
                     "id": "88bb3cc5-5d12-426b-82ed-d0e9f0e11601",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "FireSecondary",
+                    "type": "Button",
+                    "id": "98755d30-f6d5-46db-86ea-ad627e627fae",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -49,6 +57,22 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "704e0fa8-be0e-48b0-b782-beb91c5e2862",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Slot0",
+                    "type": "Button",
+                    "id": "661086e2-e56e-4401-aab0-7f742e118b9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Slot1",
+                    "type": "Button",
+                    "id": "913d31f6-0932-4fdb-b292-9c8c3e9e3f9c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
@@ -227,7 +251,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "FirePrimary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -238,7 +262,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "FirePrimary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -249,7 +273,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Fire",
+                    "action": "FirePrimary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -260,7 +284,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "FirePrimary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -271,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "FirePrimary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -305,6 +329,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f0084111-d7f2-4c82-8fbf-d74edb3dba5c",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Slot0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9348b4b8-05a1-4b87-93e2-35b593000b8a",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Slot1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c6b9aab-9eea-4d72-be42-e9bc992bd2de",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "FireSecondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

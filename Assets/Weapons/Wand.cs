@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Wand : MonoBehaviour
 {
-    private Renderer renderer;
+    private Renderer wandRenderer;
 
     private void Awake()
     {
-        renderer = GetComponent<Renderer>();
+        wandRenderer = GetComponent<Renderer>();
     }
 
     public void SetGlowColor(Color glowColor)
     {
-        renderer.material.color = glowColor;
-        renderer.material.SetColor("_EmissionColor", glowColor);
+        wandRenderer.material.color = glowColor;
+        wandRenderer.material.SetColor("_EmissionColor", glowColor);
     }
 }

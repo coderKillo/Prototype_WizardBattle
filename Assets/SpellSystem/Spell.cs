@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell : ScriptableObject
+[Serializable]
+public class SpellAbility
 {
     [Header("General")]
     public float cooldown;
-    private bool isUsable = true;
-    public bool IsUsable { get { return isUsable; } }
 
     [Header("UI")]
     public Sprite icon;
@@ -16,8 +15,22 @@ public class Spell : ScriptableObject
     [Header("Animation")]
     public String animation;
     public float castDelay;
+}
+
+public class Spell : ScriptableObject
+{
+    [Header("General")]
     [ColorUsage(true, true)]
     public Color wandGlowColor;
+    private bool isUsable = true;
+    public bool IsUsable { get { return isUsable; } }
+
+    [Header("Primary Ability")]
+    public SpellAbility primaryAbility;
+
+    [Header("Secondary Ability")]
+    public SpellAbility secondaryAbility;
+
 
     public virtual void CastSpell(SpellManager manager) { }
 

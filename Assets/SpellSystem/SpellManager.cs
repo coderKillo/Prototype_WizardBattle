@@ -13,6 +13,8 @@ public class SpellManager : MonoBehaviour
     [Header("Spells")]
     [SerializeField] private Spell[] slots;
     public Spell[] Slots { get { return slots; } }
+    private Spell currentSpell = null;
+    public Spell CurrentSpell { get { return currentSpell; } }
 
     static private SpellManager instance = null;
     static public SpellManager Instance { get { return instance; } }
@@ -25,40 +27,74 @@ public class SpellManager : MonoBehaviour
         }
     }
 
-    private void OnFire(InputValue value)
+    private void Start()
     {
-        StartCoroutine("CastSpell", 0);
+        ChangeSlot(0);
+    }
+
+    private void OnFirePrimary(InputValue value)
+    {
+        StartCoroutine("CastSpell", global::Slot.PRIMARY);
+    }
+
+    private void OnFireSecondary(InputValue value)
+    {
+        StartCoroutine("CastSpell", global::Slot.SECONDARY);
+    }
+
+    private void OnSlot0(InputValue value)
+    {
+        ChangeSlot(0);
+    }
+
+    private void OnSlot1(InputValue value)
+    {
+        ChangeSlot(1);
     }
 
     public int SlotLength() { return slots.Length; }
     public Spell Slot(int index) { return slots[index]; }
 
-    private IEnumerator CastSpell(int index)
+    private void ChangeSlot(int index)
     {
         if (index >= slots.Length)
         {
-            yield return null;
+            return;
         }
 
-        var spell = slots[index];
+        currentSpell = slots[index];
 
-        if (!spell.IsUsable)
+        wand.SetGlowColor(currentSpell.wandGlowColor);
+
+        SpellSlots.Instance.GetSlot(global::Slot.PRIMARY).SetIcon(currentSpell.primaryAbility.icon);
+        SpellSlots.Instance.GetSlot(global::Slot.SECONDARY).SetIcon(currentSpell.secondaryAbility.icon);
+    }
+
+    private IEnumerator CastSpell(Slot button)
+    {
+        if (currentSpell == null)
         {
             yield return null;
         }
 
-        spell.Lock();
+        if (!currentSpell.IsUsable)
+        {
+            yield return null;
+        }
 
-        animator.Play(spell.animation);
-        yield return new WaitForSeconds(spell.castDelay);
+        currentSpell.Lock();
 
-        wand.SetGlowColor(spell.wandGlowColor);
+        var spellAbility = button == global::Slot.PRIMARY ? currentSpell.primaryAbility : currentSpell.secondaryAbility;
 
-        spell.CastSpell(this);
+        animator.Play(spellAbility.animation);
+        SpellSlots.Instance.GetSlot(button).TriggerCooldown(spellAbility.cooldown);
+        yield return new WaitForSeconds(spellAbility.castDelay);
 
-        yield return new WaitForSeconds(spell.cooldown - spell.castDelay);
+        currentSpell.CastSpell(this);
 
-        spell.Unlock();
+        yield return new WaitForSeconds(spellAbility.cooldown - spellAbility.castDelay);
+
+        currentSpell.Unlock();
     }
 
     // TODO: use cylinder for Raycast
