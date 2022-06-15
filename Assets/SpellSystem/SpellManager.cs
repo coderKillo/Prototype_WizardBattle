@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class SpellManager : MonoBehaviour
 {
     [SerializeField] private Transform rayCastRef;
+    [SerializeField] private Transform spellSourcePoint;
     [SerializeField] private LayerMask mask;
     [SerializeField] private Animator animator;
     [SerializeField] private Wand wand;
@@ -90,7 +91,14 @@ public class SpellManager : MonoBehaviour
         SpellSlots.Instance.GetSlot(button).TriggerCooldown(spellAbility.cooldown);
         yield return new WaitForSeconds(spellAbility.castDelay);
 
-        currentSpell.CastSpell(this);
+        if (button == global::Slot.PRIMARY)
+        {
+            currentSpell.CastSpell(this);
+        }
+        else
+        {
+            currentSpell.CastSpellSecondary(this);
+        }
 
         yield return new WaitForSeconds(spellAbility.cooldown - spellAbility.castDelay);
 
@@ -98,16 +106,17 @@ public class SpellManager : MonoBehaviour
     }
 
     // TODO: use cylinder for Raycast
-    public Transform SpellHitTarget()
+    public bool SpellHitTarget(out RaycastHit hit)
     {
-        RaycastHit hit;
         if (Physics.Raycast(rayCastRef.position, rayCastRef.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
         {
-            return hit.transform;
+            return true;
         }
 
-        return null;
+        return false;
     }
 
     public Transform AimDirection() { return rayCastRef; }
+
+    public Transform SpellSource() { return spellSourcePoint; }
 }

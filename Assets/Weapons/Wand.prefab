@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 0.007499998, y: 0.006499998, z: 0.0074999984}
   m_Children:
   - {fileID: 562187941157843953}
+  - {fileID: 7667703727364123707}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 5.207, y: -11.094, z: -176.578}
@@ -95,8 +96,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186c840d9cf6d804795b221cd1e5a624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wandGlowColor: {r: 1, g: 0.069870606, b: 0, a: 0}
-  wandGlowIntensity: 3.48
+--- !u!1 &6856042985545656572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7667703727364123707}
+  m_Layer: 0
+  m_Name: Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7667703727364123707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6856042985545656572}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.31, y: 61.62, z: 0.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6432976245189906225}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &3371279761158867701
 PrefabInstance:
   m_ObjectHideFlags: 0

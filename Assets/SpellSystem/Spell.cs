@@ -33,6 +33,7 @@ public class Spell : ScriptableObject
 
 
     public virtual void CastSpell(SpellManager manager) { }
+    public virtual void CastSpellSecondary(SpellManager manager) { }
 
     public void Lock() { isUsable = false; }
     public void Unlock() { isUsable = true; }

@@ -25,3 +25,6 @@ MonoBehaviour:
     castDelay: 0.3
   forcePull: 800
   upwardsForceScale: 0.3
+  mask:
+    serializedVersion: 2
+    m_Bits: 128

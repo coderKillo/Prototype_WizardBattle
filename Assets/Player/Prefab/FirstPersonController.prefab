@@ -575,7 +575,7 @@ Transform:
   - {fileID: 4689431156424103}
   m_Father: {fileID: 4248849194832563}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 132.16699, y: 247.187, z: 245.014}
+  m_LocalEulerAnglesHint: {x: 133.466, y: 306.027, z: 294.952}
 --- !u!1 &1200099261162275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,12 +2589,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastRef: {fileID: 0}
+  spellSourcePoint: {fileID: 1346870089956160499}
   mask:
     serializedVersion: 2
     m_Bits: 128
   animator: {fileID: 95742061381390805}
   wand: {fileID: 7257044401232887907}
   slots:
+  - {fileID: 11400000, guid: e767408f308f8a241a805fb6b693d7f0, type: 2}
   - {fileID: 11400000, guid: fa4d92572bb648e418bd9d5fa9c99ee5, type: 2}
 --- !u!1 &4215889442431320693
 GameObject:
@@ -2704,3 +2706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186c840d9cf6d804795b221cd1e5a624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1346870089956160499 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7667703727364123707, guid: b387cb874997c2f4cb30c5682a184b03, type: 3}
+  m_PrefabInstance: {fileID: 8707759219133472712}
+  m_PrefabAsset: {fileID: 0}
