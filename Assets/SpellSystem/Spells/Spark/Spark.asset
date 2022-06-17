@@ -23,6 +23,13 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 2d089513ae4adfc48a683c362ad9992c, type: 3}
     animation: Attack1
     castDelay: 0
-  damage: 10
+  spellDamage: 1
+  missileSpeed: 100
+  bounceMask:
+    serializedVersion: 2
+    m_Bits: 34231
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 256
   missilePrefab: {fileID: 23703117211389392, guid: 80a5bd13ba54a0d4d87b020cef98a3ae, type: 3}
   explosionPrefab: {fileID: 6492739255126768774, guid: 49d0080ff21e35e438ccb104ff8ba3c4, type: 3}

@@ -16,17 +16,12 @@ public class ForceSpell : Spell
         if (!manager.SpellHitTarget(out hit)) return;
         var target = hit.transform.gameObject;
 
-        if (!IsInLayerMask(target)) return;
+        if (!LayerMaskUtils.IsInLayerMask(target, mask)) return;
 
         var rigidbody = target.GetComponent<Rigidbody>();
         if (rigidbody == null) return;
 
         Vector3 forceDirection = Vector3.back + (upwardsForceScale * Vector3.up);
         rigidbody.AddForce(manager.AimDirection().TransformDirection(forceDirection) * forcePull);
-    }
-
-    public bool IsInLayerMask(GameObject obj)
-    {
-        return ((mask.value & (1 << obj.layer)) > 0);
     }
 }

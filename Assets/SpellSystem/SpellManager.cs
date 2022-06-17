@@ -75,12 +75,12 @@ public class SpellManager : MonoBehaviour
     {
         if (currentSpell == null)
         {
-            yield return null;
+            yield break;
         }
 
         if (!currentSpell.IsUsable)
         {
-            yield return null;
+            yield break;
         }
 
         currentSpell.Lock();

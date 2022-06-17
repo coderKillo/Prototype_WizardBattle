@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2158815897252694450}
   - component: {fileID: 6923127854515869309}
   - component: {fileID: 6450212114342511514}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1026097107088138640}
   - component: {fileID: 1026097107088138641}
   - component: {fileID: 6829218217685329628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   caseDistance: 15
+  attackDistance: 2
 --- !u!114 &6829218217685329628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +329,7 @@ GameObject:
   - component: {fileID: 8042911288489389700}
   - component: {fileID: 1376413710170000437}
   - component: {fileID: 927830436439971915}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +405,7 @@ GameObject:
   - component: {fileID: 4184894097578041410}
   - component: {fileID: 2168810951952235340}
   - component: {fileID: 5763067002927573482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +500,7 @@ GameObject:
   - component: {fileID: 2335321184150167800}
   - component: {fileID: 1539636879823750284}
   - component: {fileID: 6746569158312917835}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Filler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
