@@ -32,6 +32,7 @@ public class Spell : ScriptableObject
     public SpellAbility secondaryAbility;
 
 
+    public virtual void PrepareSpell(SpellManager manager) { }
     public virtual void CastSpell(SpellManager manager) { }
     public virtual void CastSpellSecondary(SpellManager manager) { }
 

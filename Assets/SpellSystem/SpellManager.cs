@@ -7,6 +7,7 @@ public class SpellManager : MonoBehaviour
 {
     [SerializeField] private Transform rayCastRef;
     [SerializeField] private Transform spellSourcePoint;
+    [SerializeField] private Transform spellContainer;
     [SerializeField] private LayerMask mask;
     [SerializeField] private Animator animator;
     [SerializeField] private Wand wand;
@@ -31,6 +32,12 @@ public class SpellManager : MonoBehaviour
     private void Start()
     {
         ChangeSlot(0);
+
+        foreach (var spell in slots)
+        {
+            spell.Unlock();
+            spell.PrepareSpell(this);
+        }
     }
 
     private void OnFirePrimary(InputValue value)
@@ -119,4 +126,6 @@ public class SpellManager : MonoBehaviour
     public Transform AimDirection() { return rayCastRef; }
 
     public Transform SpellSource() { return spellSourcePoint; }
+
+    public Transform SpellContainer() { return spellContainer; }
 }

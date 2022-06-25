@@ -46,8 +46,12 @@ public class Projectile : MonoBehaviour
 
     public void DestroyMissile()
     {
-        onDestroyMissile.Invoke();
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        onDestroyMissile.Invoke();
     }
 
     private void Bounce(Vector3 collisionNormal)
