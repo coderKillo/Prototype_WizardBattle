@@ -25,29 +25,27 @@ public class SpellSlots : MonoBehaviour
         {
             instance = this;
         }
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
-    public SpellButton GetSlot(Slot button)
+    public SpellButton GetButton(Slot button)
     {
         return spellButtons[(int)button];
     }
 
-    private void Update()
+    public void SetSlotColor(Color color, int index)
     {
-        var spells = SpellManager.Instance.Slots;
+        if (index >= transform.childCount) return;
 
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            var child = transform.GetChild(i).gameObject;
-            if (i < spells.Length)
-            {
-                child.SetActive(true);
-                child.GetComponent<Image>().color = spells[i].wandGlowColor;
-            }
-            else
-            {
-                child.SetActive(false);
-            }
-        }
+        var child = transform.GetChild(index + 1).gameObject;
+
+        child.SetActive(true);
+        child.GetComponent<Image>().color = color;
     }
+
+    // FIXME: fix bug that Slot Color is not set in UI
 }

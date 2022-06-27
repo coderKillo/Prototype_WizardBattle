@@ -9,11 +9,11 @@ public class Projectile : MonoBehaviour
     private float speed;
     public float Speed { set { speed = value; } }
 
-    private LayerMask bounceMask;
-    public LayerMask BounceMask { set { bounceMask = value; } }
+    private LayerMask hitMask;
+    public LayerMask HitMask { set { hitMask = value; } }
 
     private int bounceCount = 0;
-    public int BounceCount { set { bounceCount = value; } }
+    public int BounceCount { get { return bounceCount; } }
 
     private UnityEvent onDestroyMissile = new UnityEvent();
     public UnityEvent OnDestroyMissile { get { return onDestroyMissile; } }
@@ -26,17 +26,9 @@ public class Projectile : MonoBehaviour
         var distance = speed * Time.deltaTime;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distance, bounceMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distance, hitMask))
         {
-            transform.position = hit.point;
-            Bounce(hit.normal);
-
             onHit.Invoke(hit);
-
-            if (bounceCount <= 0)
-            {
-                DestroyMissile();
-            }
         }
         else
         {
@@ -49,15 +41,15 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnDestroy()
-    {
-        onDestroyMissile.Invoke();
-    }
-
-    private void Bounce(Vector3 collisionNormal)
+    public void Bounce(Vector3 collisionNormal)
     {
         var direction = Vector3.Reflect(transform.forward.normalized, collisionNormal);
         transform.forward = direction;
-        bounceCount--;
+        bounceCount++;
+    }
+
+    private void OnDestroy()
+    {
+        onDestroyMissile.Invoke();
     }
 }

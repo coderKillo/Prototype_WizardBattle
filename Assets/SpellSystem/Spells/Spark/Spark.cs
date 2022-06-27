@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Spells/Spark")]
-public class SparkSpell : Spell
+public class Spark : Spell
 {
     [Header("Spell Parameter")]
     [SerializeField] private int spellDamage = 10;
@@ -17,44 +16,39 @@ public class SparkSpell : Spell
     [SerializeField] GameObject missilePrefab;
     [SerializeField] GameObject explosionPrefab;
 
-    private GameObject missileContainer;
-    private bool missileStop = false;
-    private float missileInitialSpeed = 0f;
+    private bool freeze = false;
+    private float speed = 0f;
 
-    public override void PrepareSpell(SpellManager manager)
+    private void Awake()
     {
-        missileContainer = new GameObject("Sparks");
-        missileContainer.transform.parent = manager.SpellContainer();
-
-        missileInitialSpeed = missileSpeed;
+        speed = missileSpeed;
     }
 
-    public override void CastSpell(SpellManager manager)
+    public override void CastSpell()
     {
-        var missile = GameObject.Instantiate(missilePrefab, manager.SpellSource().position, Quaternion.identity, missileContainer.transform);
+        var missile = GameObject.Instantiate(missilePrefab, manager.SpellSource().position, Quaternion.identity, transform);
         missile.transform.LookAt(GetTarget());
 
         var projectile = missile.AddComponent<Projectile>();
-        projectile.Speed = missileInitialSpeed;
-        projectile.BounceMask = bounceMask;
-        projectile.BounceCount = 3;
+        projectile.Speed = speed;
+        projectile.HitMask = hitMask;
         projectile.OnDestroyMissile.AddListener(() => DestroyMissile(missile));
         projectile.OnHit.AddListener((hit) => MissileHit(missile, hit));
 
         Destroy(missile, missileLifetime);
     }
 
-    public override void CastSpellSecondary(SpellManager manager)
+    public override void CastSpellSecondary()
     {
-        missileStop = !missileStop;
-        missileInitialSpeed = missileStop ? 0f : missileSpeed;
+        freeze = !freeze;
+        speed = freeze ? 0f : missileSpeed;
 
-        foreach (Transform missile in missileContainer.transform)
+        foreach (Transform missile in transform)
         {
             var projectile = missile.GetComponent<Projectile>();
             if (projectile == null) return;
 
-            projectile.Speed = missileInitialSpeed;
+            projectile.Speed = speed;
 
             missile.transform.LookAt(GetTarget());
         }
@@ -65,13 +59,13 @@ public class SparkSpell : Spell
         RaycastHit hit;
         Vector3 target;
 
-        if (SpellManager.Instance.SpellHitTarget(out hit))
+        if (SpellHitTarget(out hit, hitMask))
         {
             target = hit.point;
         }
         else
         {
-            var direction = SpellManager.Instance.AimDirection();
+            var direction = manager.AimDirection();
             target = direction.position + direction.forward * 1000f;
         }
 
@@ -86,13 +80,22 @@ public class SparkSpell : Spell
 
     private void MissileHit(GameObject missile, RaycastHit hit)
     {
-        if (LayerMaskUtils.IsInLayerMask(hit.transform.gameObject, hitMask))
+        var projectile = missile.GetComponent<Projectile>();
+
+        if (LayerMaskUtils.IsInLayerMask(hit.transform.gameObject, bounceMask))
         {
-            var projectile = missile.GetComponent<Projectile>();
-            if (projectile)
+            if (projectile.BounceCount >= 3)
             {
                 projectile.DestroyMissile();
             }
+            else
+            {
+                projectile.Bounce(hit.normal);
+            }
+        }
+        else
+        {
+            projectile.DestroyMissile();
 
             var enemyHealth = hit.transform.GetComponent<EnemyHealth>();
             if (enemyHealth)

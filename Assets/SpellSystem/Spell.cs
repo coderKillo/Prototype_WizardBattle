@@ -3,39 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class SpellAbility
+public class Spell : MonoBehaviour
 {
-    [Header("General")]
-    public float cooldown;
+    protected SpellConfig config;
+    public SpellConfig Config { get { return config; } }
 
-    [Header("UI")]
-    public Sprite icon;
+    protected SpellManager manager;
 
-    [Header("Animation")]
-    public String animation;
-    public float castDelay;
-}
-
-public class Spell : ScriptableObject
-{
-    [Header("General")]
-    [ColorUsage(true, true)]
-    public Color wandGlowColor;
     private bool isUsable = true;
     public bool IsUsable { get { return isUsable; } }
 
-    [Header("Primary Ability")]
-    public SpellAbility primaryAbility;
-
-    [Header("Secondary Ability")]
-    public SpellAbility secondaryAbility;
-
-
-    public virtual void PrepareSpell(SpellManager manager) { }
-    public virtual void CastSpell(SpellManager manager) { }
-    public virtual void CastSpellSecondary(SpellManager manager) { }
+    public void Init(SpellConfig config, SpellManager manager)
+    {
+        this.config = config;
+        this.manager = manager;
+    }
 
     public void Lock() { isUsable = false; }
     public void Unlock() { isUsable = true; }
+
+
+    public virtual void PrepareSpell() { }
+    public virtual void CastSpell() { }
+    public virtual void CastSpellSecondary() { }
+
+
+    // TODO: use cylinder for Raycast
+    public bool SpellHitTarget(out RaycastHit hit, LayerMask mask)
+    {
+        if (Physics.Raycast(manager.AimDirection().position, manager.AimDirection().TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 }
