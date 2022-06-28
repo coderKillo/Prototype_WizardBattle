@@ -4279,6 +4279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Buildings_Wall_5x3_01P
       objectReference: {fileID: 0}
+    - target: {fileID: 1194301909540060, guid: a2fe7f9dc74a5ff4696014f411430c80, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4719498968730246, guid: a2fe7f9dc74a5ff4696014f411430c80, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4831,15 +4835,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayCastRef: {fileID: 1442028846}
   spellSourcePoint: {fileID: 1004028933}
-  spellContainer: {fileID: 0}
-  mask:
-    serializedVersion: 2
-    m_Bits: 33943
   animator: {fileID: 947232429}
   wand: {fileID: 1365723078}
-  slots:
-  - {fileID: 11400000, guid: e767408f308f8a241a805fb6b693d7f0, type: 2}
-  - {fileID: 11400000, guid: fa4d92572bb648e418bd9d5fa9c99ee5, type: 2}
+  spellConfigs:
+  - {fileID: 11400000, guid: 980cdab1e38733a40a9a88e1c1bb5e11, type: 2}
+  - {fileID: 11400000, guid: 9fc51ec49cd05ef4eb2e92b2100a632a, type: 2}
 --- !u!4 &1720941107
 Transform:
   m_ObjectHideFlags: 0

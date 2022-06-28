@@ -9,22 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b221b295bc7650438305b40e5d00b4b, type: 3}
-  m_Name: Force
+  m_Script: {fileID: 11500000, guid: 6533cd12d38f5b24bb7e1b93149f7a97, type: 3}
+  m_Name: ForceConfig
   m_EditorClassIdentifier: 
-  wandGlowColor: {r: 3.549399, g: 0, b: 181.01933, a: 1}
+  spellName: Force
+  wandGlowColor: {r: 2.0896769, g: 0, b: 34.29675, a: 0}
+  spell: {fileID: 2041811535000869204, guid: 4371e58f70a857840b581b70a9f0f2fd, type: 3}
   primaryAbility:
-    cooldown: 2
+    cooldown: 0.5
     icon: {fileID: 21300000, guid: 2bb02b871b3de264084da35529482ade, type: 3}
     animation: Attack1
-    castDelay: 0.3
+    castDelay: 0
   secondaryAbility:
-    cooldown: 1
+    cooldown: 0.5
     icon: {fileID: 21300000, guid: 4029a9cfeb86f134c9c5af05993eaac8, type: 3}
-    animation: Attack1
-    castDelay: 0.3
-  forcePull: 800
-  upwardsForceScale: 0.3
-  mask:
-    serializedVersion: 2
-    m_Bits: 128
+    animation: Attack2
+    castDelay: 0.2

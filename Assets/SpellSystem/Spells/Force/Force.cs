@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceSpell : Spell
+public class Force : Spell
 {
     [Header("Spell Parameter")]
     [SerializeField] private float forcePull = 800f;
@@ -21,6 +21,4 @@ public class ForceSpell : Spell
         Vector3 forceDirection = Vector3.back + (upwardsForceScale * Vector3.up);
         rigidbody.AddForce(manager.AimDirection().TransformDirection(forceDirection) * forcePull);
     }
-
-    // FIXME: Force Spell for new spells
 }

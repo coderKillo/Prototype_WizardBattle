@@ -12,9 +12,6 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private Transform spellSourcePoint;
     public Transform SpellSource() { return spellSourcePoint; }
 
-    [SerializeField] private Transform spellContainer;
-    public Transform SpellContainer() { return spellContainer; }
-
     [SerializeField] private Animator animator;
     [SerializeField] private Wand wand;
 

@@ -41,11 +41,9 @@ public class SpellSlots : MonoBehaviour
     {
         if (index >= transform.childCount) return;
 
-        var child = transform.GetChild(index + 1).gameObject;
+        var child = transform.GetChild(index).gameObject;
 
         child.SetActive(true);
         child.GetComponent<Image>().color = color;
     }
-
-    // FIXME: fix bug that Slot Color is not set in UI
 }
