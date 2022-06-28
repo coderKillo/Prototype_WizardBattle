@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forcePull: 800
   upwardsForceScale: 0.3
+  spreadAmount: 0.03
   mask:
     serializedVersion: 2
     m_Bits: 128

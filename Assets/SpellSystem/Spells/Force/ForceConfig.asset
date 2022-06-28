@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ForceConfig
   m_EditorClassIdentifier: 
   spellName: Force
-  wandGlowColor: {r: 2.0896769, g: 0, b: 34.29675, a: 0}
+  wandGlowColor: {r: 2.0896769, g: 0, b: 34.29675, a: 1}
   spell: {fileID: 2041811535000869204, guid: 4371e58f70a857840b581b70a9f0f2fd, type: 3}
   primaryAbility:
     cooldown: 0.5

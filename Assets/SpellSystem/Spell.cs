@@ -28,7 +28,6 @@ public class Spell : MonoBehaviour
     public virtual void CastSpellSecondary() { }
 
 
-    // TODO: use cylinder for Raycast
     public bool SpellHitTarget(out RaycastHit hit, LayerMask mask)
     {
         if (Physics.Raycast(manager.AimDirection().position, manager.AimDirection().TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))

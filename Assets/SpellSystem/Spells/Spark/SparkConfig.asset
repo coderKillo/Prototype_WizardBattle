@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SparkConfig
   m_EditorClassIdentifier: 
   spellName: Spark
-  wandGlowColor: {r: 34.29675, g: 0, b: 0, a: 0}
+  wandGlowColor: {r: 34.29675, g: 0, b: 0, a: 1}
   spell: {fileID: 5308799929606467158, guid: 0c8c218ee31d51e48b943e6cce240b4e, type: 3}
   primaryAbility:
     cooldown: 0.4
