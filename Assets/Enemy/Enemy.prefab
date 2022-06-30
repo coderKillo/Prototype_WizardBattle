@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 1026097107088138640}
   - component: {fileID: 1026097107088138641}
   - component: {fileID: 6829218217685329628}
+  - component: {fileID: 3304787776915185043}
   - component: {fileID: 237285815133807290}
   m_Layer: 8
   m_Name: Enemy
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   caseDistance: 15
-  attackDistance: 2
+  attackDistance: 3
 --- !u!114 &6829218217685329628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +269,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitpoints: 5
   slider: {fileID: 6923127854515869309}
+--- !u!114 &3304787776915185043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026097107088138654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5980a8dafac0e84aa4df23690c60eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  damage: 40
+  attackDistance: 3
 --- !u!95 &237285815133807290
 Animator:
   serializedVersion: 3
