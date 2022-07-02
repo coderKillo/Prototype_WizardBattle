@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8e3d47fe6077421428f4f108e1834498, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -4556,10 +4556,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4215889442368933370, guid: d9e38f2b92ad25d4699ef7bc30ba1e02, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 4981840104166556599, guid: d9e38f2b92ad25d4699ef7bc30ba1e02, type: 3}
+      propertyPath: gameOverUI
+      value: 
+      objectReference: {fileID: 387679022}
     - target: {fileID: 6300122215583400552, guid: d9e38f2b92ad25d4699ef7bc30ba1e02, type: 3}
       propertyPath: slider
       value: 

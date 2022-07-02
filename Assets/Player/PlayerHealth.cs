@@ -20,5 +20,10 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= value;
         slider.value = health;
+
+        if (health <= 0)
+        {
+            BroadcastMessage("OnPlayerDeath");
+        }
     }
 }

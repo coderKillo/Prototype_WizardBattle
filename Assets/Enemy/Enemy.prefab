@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b9f9bd04b0911249b7a8183101dae87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitpoints: 5
+  maxHitpoints: 50
   slider: {fileID: 6923127854515869309}
 --- !u!114 &3304787776915185043
 MonoBehaviour:
