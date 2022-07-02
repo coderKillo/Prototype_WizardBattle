@@ -56,7 +56,7 @@ public class FirstPersonController : MonoBehaviour
         crouchScale = playerScale;
         crouchScale.y *= 0.5f;
 
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 

@@ -2572,7 +2572,7 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: daece972-d0e2-4a0f-9c0e-82cce970f2c7
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 1
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -2602,6 +2602,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02de363196fc4ba4eb4907accc8cfe3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 200
+  slider: {fileID: 0}
 --- !u!1 &4215889442431320693
 GameObject:
   m_ObjectHideFlags: 0

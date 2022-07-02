@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
         bounceCount++;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         onDestroyMissile.Invoke();
     }
