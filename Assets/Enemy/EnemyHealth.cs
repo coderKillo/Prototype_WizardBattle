@@ -19,6 +19,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void Damage(int damage)
     {
+        BroadcastMessage("OnDamageTaken");
+
         m_currentHitpoints -= damage;
 
         slider.value = m_currentHitpoints;

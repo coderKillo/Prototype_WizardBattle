@@ -54,6 +54,11 @@ public class EnemyAI : MonoBehaviour
         return distanceToTarget < attackDistance;
     }
 
+    private void OnDamageTaken()
+    {
+        isProvoked = true;
+    }
+
     private void CaseTarget()
     {
         animator.SetBool("attack", false);

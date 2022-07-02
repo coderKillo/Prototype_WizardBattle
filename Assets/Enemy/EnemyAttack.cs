@@ -8,11 +8,6 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float damage = 40f;
     [SerializeField] private float attackDistance = 2f;
 
-    void Start()
-    {
-
-    }
-
     public void AttackHitEvent()
     {
         if (target == null) return;
