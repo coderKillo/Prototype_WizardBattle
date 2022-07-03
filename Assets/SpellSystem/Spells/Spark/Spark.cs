@@ -7,6 +7,7 @@ public class Spark : Spell
 {
     [Header("Spell Parameter")]
     [SerializeField] private int spellDamage = 10;
+    [SerializeField] private float spellDistanceDamageFactor = 0.5f;
     [SerializeField] private float missileLifetime = 10f;
     [SerializeField] private float missileSpeed = 1000f;
     [SerializeField] private LayerMask bounceMask;
@@ -100,7 +101,9 @@ public class Spark : Spell
             var enemyHealth = hit.transform.GetComponent<EnemyHealth>();
             if (enemyHealth)
             {
-                enemyHealth.Damage(spellDamage);
+                int damage = spellDamage + (int)(spellDistanceDamageFactor * projectile.TravelDistance);
+                Debug.Log("Damage: " + damage);
+                enemyHealth.Damage(damage);
             }
         }
     }

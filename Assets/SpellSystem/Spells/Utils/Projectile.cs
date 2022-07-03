@@ -15,6 +15,12 @@ public class Projectile : MonoBehaviour
     private int bounceCount = 0;
     public int BounceCount { get { return bounceCount; } }
 
+    private float travelTime = 0;
+    public float TravelTime { get { return TravelTime; } }
+
+    private float travelDistance = 0;
+    public float TravelDistance { get { return travelDistance; } }
+
     private UnityEvent onDestroyMissile = new UnityEvent();
     public UnityEvent OnDestroyMissile { get { return onDestroyMissile; } }
 
@@ -23,6 +29,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        travelTime += Time.deltaTime;
         var distance = speed * Time.deltaTime;
 
         RaycastHit hit;
@@ -33,6 +40,7 @@ public class Projectile : MonoBehaviour
         else
         {
             transform.position += transform.forward * distance;
+            travelDistance += distance;
         }
     }
 

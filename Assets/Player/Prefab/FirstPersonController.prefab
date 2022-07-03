@@ -2429,7 +2429,7 @@ GameObject:
   - component: {fileID: 4981840104166556599}
   m_Layer: 6
   m_Name: FirstPersonController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2618,6 +2618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8305f02ce36b9a4baa20876b5a399d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverUI: {fileID: 0}
 --- !u!1 &4215889442431320693
 GameObject:
   m_ObjectHideFlags: 0

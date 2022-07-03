@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellDamage: 10
+  spellDistanceDamageFactor: 0.3
   missileLifetime: 10
   missileSpeed: 100
   bounceMask:

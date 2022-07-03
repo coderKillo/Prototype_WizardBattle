@@ -7,12 +7,12 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] private Transform target;
     [SerializeField] private float caseDistance = 10f;
     [SerializeField] private float attackDistance = 2f;
 
     private NavMeshAgent agent;
     private Animator animator;
+    private Transform target;
     private float distanceToTarget = Mathf.Infinity;
     private bool isProvoked = false;
 
@@ -21,6 +21,12 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         agent.stoppingDistance = attackDistance;
+
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform;
+        }
     }
 
     void Update()
@@ -42,6 +48,11 @@ public class EnemyAI : MonoBehaviour
         {
             isProvoked = true;
         }
+    }
+
+    private void OnEnable()
+    {
+        isProvoked = false;
     }
 
     private bool IsCaseRange()
