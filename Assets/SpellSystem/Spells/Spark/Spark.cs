@@ -102,7 +102,6 @@ public class Spark : Spell
             if (enemyHealth)
             {
                 int damage = spellDamage + (int)(spellDistanceDamageFactor * projectile.TravelDistance);
-                Debug.Log("Damage: " + damage);
                 enemyHealth.Damage(damage);
             }
         }

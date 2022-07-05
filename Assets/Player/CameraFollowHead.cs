@@ -7,6 +7,6 @@ public class CameraFollowHead : MonoBehaviour
     void LateUpdate()
     {
         transform.position = head.position;
-        transform.localRotation = head.localRotation;
+        transform.rotation = head.rotation;
     }
 }
