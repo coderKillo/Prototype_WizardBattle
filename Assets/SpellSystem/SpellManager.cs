@@ -50,9 +50,21 @@ public class SpellManager : MonoBehaviour
         StartCoroutine("CastSpell", global::Slot.PRIMARY);
     }
 
+    public void FirePrimaryCanceled()
+    {
+        if (currentSpell == null) return;
+        currentSpell.CancelSpell();
+    }
+
     public void FireSecondary()
     {
         StartCoroutine("CastSpell", global::Slot.SECONDARY);
+    }
+
+    public void FireSecondaryCanceled()
+    {
+        if (currentSpell == null) return;
+        currentSpell.CancelSpellSecondary();
     }
 
     public void ChangeSlot(int index)
@@ -103,5 +115,4 @@ public class SpellManager : MonoBehaviour
 
         currentSpell.Unlock();
     }
-
 }

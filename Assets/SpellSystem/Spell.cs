@@ -26,6 +26,8 @@ public class Spell : MonoBehaviour
     public virtual void PrepareSpell() { }
     public virtual void CastSpell() { }
     public virtual void CastSpellSecondary() { }
+    public virtual void CancelSpell() { }
+    public virtual void CancelSpellSecondary() { }
 
 
     public bool SpellHitTarget(out RaycastHit hit, LayerMask mask)

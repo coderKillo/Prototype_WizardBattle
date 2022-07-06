@@ -55,6 +55,11 @@ public class Spark : Spell
         }
     }
 
+    public override void CancelSpellSecondary()
+    {
+        Debug.Log("Cancel Spark");
+    }
+
     private Vector3 GetTarget()
     {
         RaycastHit hit;
