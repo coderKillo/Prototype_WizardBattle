@@ -7,8 +7,14 @@ public class SpellButton : MonoBehaviour
 {
     [SerializeField] private Image icon;
 
+    private Slider cooldownSlider;
     private float cooldownTime;
     private bool isCooldown;
+
+    private void Start()
+    {
+        cooldownSlider = GetComponent<Slider>();
+    }
 
     public void SetIcon(Sprite sprite)
     {
@@ -24,6 +30,9 @@ public class SpellButton : MonoBehaviour
 
         cooldownTime = cooldown;
         isCooldown = true;
+
+        cooldownSlider.maxValue = cooldown;
+        cooldownSlider.value = cooldown;
     }
 
     private void Update()
@@ -39,6 +48,8 @@ public class SpellButton : MonoBehaviour
         }
 
         cooldownTime -= Time.deltaTime;
+        cooldownSlider.value = cooldownTime;
+
         if (cooldownTime <= 0)
         {
             isCooldown = false;

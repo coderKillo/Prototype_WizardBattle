@@ -13,7 +13,6 @@ public class DamagePopup : MonoBehaviour
 
     static public DamagePopup Create(Vector3 location, int damage)
     {
-        Debug.Log("create " + damage);
         var popup = GameObject.Instantiate(GameAsset.Instance.damagePopupPrefab, location, Quaternion.identity);
         var damagePopup = popup.GetComponent<DamagePopup>();
 
@@ -35,7 +34,6 @@ public class DamagePopup : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("update");
         transform.position += new Vector3(0, upwardsSpeed, 0) * Time.deltaTime;
 
         disappearTimer -= Time.deltaTime;

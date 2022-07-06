@@ -19,6 +19,7 @@ public class SpellInput : MonoBehaviour
 
     private void OnFireSecondary(InputValue value)
     {
+        // TODO: find solution to pass input value isPressed, to SpellManager
         manager.FireSecondary();
     }
 
