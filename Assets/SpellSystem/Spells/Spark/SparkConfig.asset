@@ -21,7 +21,7 @@ MonoBehaviour:
     animation: Attack2
     castDelay: 0.2
   secondaryAbility:
-    cooldown: 0.5
+    cooldown: 0.05
     icon: {fileID: 21300000, guid: 2d089513ae4adfc48a683c362ad9992c, type: 3}
     animation: Attack1
     castDelay: 0
