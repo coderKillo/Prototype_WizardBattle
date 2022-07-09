@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
         m_currentHitpoints = maxHitpoints;
         slider.maxValue = maxHitpoints;
         slider.value = maxHitpoints;
+
+        GameManager.Instance.EnemySpawned(gameObject);
     }
 
     public void Damage(int damage)
@@ -30,6 +32,8 @@ public class EnemyHealth : MonoBehaviour
         if (m_currentHitpoints <= 0)
         {
             gameObject.SetActive(false);
+            BroadcastMessage("OnDeath");
+            GameManager.Instance.EnemyDied(gameObject);
         }
     }
 }

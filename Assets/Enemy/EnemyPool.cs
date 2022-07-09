@@ -6,19 +6,21 @@ using UnityEngine;
 public class EnemyPool : MonoBehaviour
 {
     [SerializeField] private int size = 4;
-    [SerializeField] private float spawnTime = 1f;
     [SerializeField] private GameObject enemyPrefab;
 
     private GameObject[] pool;
-    private float timePassed = 0f;
 
-    void Start()
+    void Awake()
     {
         pool = new GameObject[size];
+    }
+
+    public void StartSpawn()
+    {
         for (int i = 0; i < size; i++)
         {
             pool[i] = GameObject.Instantiate(enemyPrefab, GetPosition(i), Quaternion.identity, transform);
-            pool[i].SetActive(false);
+            pool[i].transform.position = GetPosition(i);
         }
     }
 
@@ -27,17 +29,6 @@ public class EnemyPool : MonoBehaviour
         var position = transform.position;
         position.x += i;
         return position;
-    }
-
-    void Update()
-    {
-        timePassed += Time.deltaTime;
-
-        if (timePassed >= spawnTime)
-        {
-            timePassed = 0f;
-            SpawnEnemy();
-        }
     }
 
     private void SpawnEnemy()
