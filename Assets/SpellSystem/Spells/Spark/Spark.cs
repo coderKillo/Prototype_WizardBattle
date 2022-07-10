@@ -41,9 +41,16 @@ public class Spark : Spell
 
     public override void CastSpellSecondary()
     {
-        freeze = !freeze;
-        speed = freeze ? 0f : missileSpeed;
+        ChangeMissileSpeed(0f);
+    }
 
+    public override void CancelSpellSecondary()
+    {
+        ChangeMissileSpeed(missileSpeed);
+    }
+
+    private void ChangeMissileSpeed(float speed)
+    {
         foreach (Transform missile in transform)
         {
             var projectile = missile.GetComponent<Projectile>();
@@ -53,11 +60,6 @@ public class Spark : Spell
 
             missile.transform.LookAt(GetTarget());
         }
-    }
-
-    public override void CancelSpellSecondary()
-    {
-        Debug.Log("Cancel Spark");
     }
 
     private Vector3 GetTarget()
