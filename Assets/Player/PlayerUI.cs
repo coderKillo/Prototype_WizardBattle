@@ -21,6 +21,9 @@ public class PlayerUI : MonoBehaviour
 
     public void Show()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         canvas.enabled = true;
     }
 
