@@ -32,7 +32,6 @@ public class EnemyHealth : MonoBehaviour
         if (m_currentHitpoints <= 0)
         {
             gameObject.SetActive(false);
-            BroadcastMessage("OnDeath");
             GameManager.Instance.EnemyDied(gameObject);
         }
     }

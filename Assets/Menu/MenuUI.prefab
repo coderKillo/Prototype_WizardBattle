@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4228ebebc0475f8419908d5c94ae6284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 6749954953449126206}
+  headline: {fileID: 6749954953449126206}
   playButton: {fileID: 6749954952029195517}
   exitButton: {fileID: 6749954952080323285}
 --- !u!1 &6749954951555888057
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 6749954953449126207}
   - component: {fileID: 6749954953449126206}
   m_Layer: 0
-  m_Name: GameOverText
+  m_Name: Headline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

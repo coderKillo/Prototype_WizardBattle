@@ -6,14 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Canvas menuUI;
-    [SerializeField] private Canvas playerUI;
-
     static private GameManager instance;
     static public GameManager Instance { get { return instance; } }
 
-    public int enemyCounter = 0;
-
+    private int enemyCounter = 0;
     private int currentSceneIndex = 0;
 
     void Awake()
@@ -26,8 +22,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SpawnEnemies();
-        ShowStartMenu();
+        StartLevel();
     }
 
     void Update()
@@ -41,41 +36,36 @@ public class GameManager : MonoBehaviour
     public void EnemySpawned(GameObject enemy)
     {
         enemyCounter++;
+        PlayerScoreUI.Instance.SetScore(enemyCounter);
     }
 
     public void EnemyDied(GameObject enemy)
     {
         enemyCounter--;
+        PlayerScoreUI.Instance.SetScore(enemyCounter);
     }
 
     public void PlayerDied()
     {
-        SwitchUI(menuUI);
-    }
-
-    public void ReloadScene()
-    {
-        SceneManager.LoadScene(currentSceneIndex);
+        GameMenu.Instance.ShowGameOver();
+        PlayerUI.Instance.Hide();
     }
 
     public void StartLevel()
     {
-
+        SpawnEnemies();
+        GameMenu.Instance.Hide();
+        PlayerUI.Instance.Show();
     }
 
     public void RestartLevel()
     {
-
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public void ExitGame()
     {
         Application.Quit();
-    }
-
-    private void ShowStartMenu()
-    {
-        SwitchUI(menuUI);
     }
 
     private static void SpawnEnemies()
@@ -86,20 +76,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SwitchUI(Canvas ui, bool cursorEnabled = true)
-    {
-        menuUI.enabled = false;
-        playerUI.enabled = false;
-
-        ui.enabled = true;
-
-        Cursor.lockState = cursorEnabled ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = cursorEnabled;
-    }
-
     private void GameWon()
     {
-        throw new NotImplementedException();
+        GameMenu.Instance.ShowGameWon();
+        PlayerUI.Instance.Hide();
     }
 
     private bool CheckWinCondition()
