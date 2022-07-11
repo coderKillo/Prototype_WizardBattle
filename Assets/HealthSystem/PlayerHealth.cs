@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float health = 0f;
     [SerializeField] private float maxHealth = 200f;
     [SerializeField] private Slider slider;
+    [SerializeField] private GameEvent OnPlayerDeath;
 
     void Start()
     {
@@ -23,8 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            BroadcastMessage("OnPlayerDeath");
-            GameManager.Instance.PlayerDied();
+            OnPlayerDeath?.Invoke();
         }
     }
 }

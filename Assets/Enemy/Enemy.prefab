@@ -268,6 +268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHitpoints: 50
   slider: {fileID: 6923127854515869309}
+  enemySpawnEvent: {fileID: 11400000, guid: e9bfb4cf29a945342b07f43c55529a50, type: 2}
+  enemyDiedEvent: {fileID: 11400000, guid: 593ff28f37f93e043b2c602fd3d48ed7, type: 2}
 --- !u!114 &3304787776915185043
 MonoBehaviour:
   m_ObjectHideFlags: 0

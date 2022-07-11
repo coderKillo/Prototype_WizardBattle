@@ -17,7 +17,6 @@ public class Spark : Spell
     [SerializeField] GameObject missilePrefab;
     [SerializeField] GameObject explosionPrefab;
 
-    private bool freeze = false;
     private float speed = 0f;
 
     private void Awake()

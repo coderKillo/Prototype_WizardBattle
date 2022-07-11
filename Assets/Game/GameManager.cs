@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
     static private GameManager instance;
     static public GameManager Instance { get { return instance; } }
 
+    [SerializeField] private GameEvent levelWonEvent;
+    [SerializeField] private GameEvent startLevelEvent;
+
+    private ScoreManager scoreManager;
+
     private int enemyCounter = 0;
     private int currentSceneIndex = 0;
 
@@ -18,6 +23,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
     }
 
     void Start()
@@ -33,29 +40,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EnemySpawned(GameObject enemy)
+    public void EnemySpawned()
     {
         enemyCounter++;
-        PlayerScoreUI.Instance.SetScore(enemyCounter);
+        scoreManager.Score = enemyCounter;
     }
 
-    public void EnemyDied(GameObject enemy)
+    public void EnemyDied()
     {
         enemyCounter--;
-        PlayerScoreUI.Instance.SetScore(enemyCounter);
-    }
-
-    public void PlayerDied()
-    {
-        GameMenu.Instance.ShowGameOver();
-        PlayerUI.Instance.Hide();
+        scoreManager.Score = enemyCounter;
     }
 
     public void StartLevel()
     {
         SpawnEnemies();
-        GameMenu.Instance.Hide();
-        PlayerUI.Instance.Show();
+        startLevelEvent?.Invoke();
     }
 
     public void RestartLevel()
@@ -78,8 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void GameWon()
     {
-        GameMenu.Instance.ShowGameWon();
-        PlayerUI.Instance.Hide();
+        levelWonEvent?.Invoke();
     }
 
     private bool CheckWinCondition()
