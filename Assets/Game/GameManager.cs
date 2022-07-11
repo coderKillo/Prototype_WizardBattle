@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     static private GameManager instance;
     static public GameManager Instance { get { return instance; } }
 
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    [Header("Events")]
     [SerializeField] private GameEvent levelWonEvent;
     [SerializeField] private GameEvent startLevelEvent;
-
-    private ScoreManager scoreManager;
 
     private int enemyCounter = 0;
     private int currentSceneIndex = 0;
@@ -23,12 +25,14 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-
-        scoreManager = GameObject.FindObjectOfType<ScoreManager>();
     }
 
     void Start()
     {
+        //TODO: find solution cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         StartLevel();
     }
 
@@ -43,13 +47,13 @@ public class GameManager : MonoBehaviour
     public void EnemySpawned()
     {
         enemyCounter++;
-        scoreManager.Score = enemyCounter;
+        scoreText.text = enemyCounter.ToString();
     }
 
     public void EnemyDied()
     {
         enemyCounter--;
-        scoreManager.Score = enemyCounter;
+        scoreText.text = enemyCounter.ToString();
     }
 
     public void StartLevel()
