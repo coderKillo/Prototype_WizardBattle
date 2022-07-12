@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float health = 0f;
     [SerializeField] private float maxHealth = 200f;
     [SerializeField] private Slider slider;
-    [SerializeField] private GameEvent OnPlayerDeath;
+
+    static public event Action OnDeath;
 
     void Start()
     {
@@ -24,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            OnPlayerDeath?.Invoke();
+            OnDeath?.Invoke();
         }
     }
 }

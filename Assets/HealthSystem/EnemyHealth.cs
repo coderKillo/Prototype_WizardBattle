@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int maxHitpoints = 5;
     [SerializeField] private Slider slider;
 
-    [SerializeField] private GameEvent enemySpawnEvent;
-    [SerializeField] private GameEvent enemyDiedEvent;
+    static public event Action OnSpawn;
+    static public event Action OnDeath;
 
     private int m_currentHitpoints = 0;
 
@@ -19,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
         slider.maxValue = maxHitpoints;
         slider.value = maxHitpoints;
 
-        enemySpawnEvent?.Invoke();
+        OnSpawn?.Invoke();
     }
 
     public void Damage(int damage)
@@ -35,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
         if (m_currentHitpoints <= 0)
         {
             gameObject.SetActive(false);
-            enemyDiedEvent?.Invoke();
+            OnDeath?.Invoke();
         }
     }
 }

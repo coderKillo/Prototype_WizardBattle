@@ -5,18 +5,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+public enum GameState
+{
+    Init,
+    Play,
+    GameOver,
+    PlayerWon
+}
+
 public class GameManager : MonoBehaviour
 {
     static private GameManager instance;
     static public GameManager Instance { get { return instance; } }
 
-    [SerializeField] private TextMeshProUGUI scoreText;
+    static public event Action<GameState> OnGameStateChange;
 
-    [Header("Events")]
-    [SerializeField] private GameEvent levelWonEvent;
-    [SerializeField] private GameEvent startLevelEvent;
+    [SerializeField] private Canvas gameMenu;
+    [SerializeField] private TextMeshProUGUI gameMenuHeadline;
 
-    private int enemyCounter = 0;
+    [SerializeField] private Canvas playerUI;
+
+    private GameState currentState;
     private int currentSceneIndex = 0;
 
     void Awake()
@@ -29,38 +38,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //TODO: find solution cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        PlayerHealth.OnDeath += PlayerDied;
 
         StartLevel();
     }
 
     void Update()
     {
-        if (CheckWinCondition())
+        if (ScoreManager.Instance.Score <= 0)
         {
             GameWon();
         }
     }
 
-    public void EnemySpawned()
-    {
-        enemyCounter++;
-        scoreText.text = enemyCounter.ToString();
-    }
-
-    public void EnemyDied()
-    {
-        enemyCounter--;
-        scoreText.text = enemyCounter.ToString();
-    }
-
-    public void StartLevel()
-    {
-        SpawnEnemies();
-        startLevelEvent?.Invoke();
-    }
+    ////////////////////////////////////////////////////////////////////////////////
 
     public void RestartLevel()
     {
@@ -72,6 +63,52 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private void StartLevel()
+    {
+        SpawnEnemies();
+        ChangeState(GameState.Play);
+    }
+
+    private void PlayerDied()
+    {
+        ChangeState(GameState.GameOver);
+    }
+
+    private void GameWon()
+    {
+        ChangeState(GameState.PlayerWon);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+    private void ChangeState(GameState state)
+    {
+        if (currentState == state)
+            return;
+
+        switch (state)
+        {
+            case GameState.Play:
+                Show(playerUI, false);
+                break;
+            case GameState.GameOver:
+                gameMenuHeadline.text = "You Died!";
+                Show(gameMenu);
+                break;
+            case GameState.PlayerWon:
+                gameMenuHeadline.text = "You Won!";
+                Show(gameMenu);
+                break;
+            default:
+                break;
+        }
+
+        currentState = state;
+        OnGameStateChange?.Invoke(currentState);
+    }
+
     private static void SpawnEnemies()
     {
         foreach (var enemyPool in GameObject.FindObjectsOfType<EnemyPool>())
@@ -80,13 +117,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void GameWon()
+    private void Show(Canvas ui, bool enableCursor = true)
     {
-        levelWonEvent?.Invoke();
+        playerUI.enabled = false;
+        gameMenu.enabled = false;
+
+        ui.enabled = true;
+
+        Cursor.lockState = enableCursor ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = enableCursor;
     }
 
-    private bool CheckWinCondition()
-    {
-        return enemyCounter <= 0;
-    }
 }
