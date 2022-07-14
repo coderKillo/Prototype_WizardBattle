@@ -82,27 +82,27 @@ public class SpellManager : MonoBehaviour
         SpellSlots.Instance.GetButton(global::Slot.SECONDARY).SetIcon(currentSpell.Config.secondaryAbility.icon);
     }
 
-    private IEnumerator CastSpell(Slot button)
+    private IEnumerator CastSpell(Slot slot)
     {
         if (currentSpell == null)
         {
             yield break;
         }
 
-        if (!currentSpell.IsUsable)
+        if (!currentSpell.IsUsable(slot))
         {
             yield break;
         }
 
-        currentSpell.Lock();
+        currentSpell.Lock(slot);
 
-        var spellAbility = button == global::Slot.PRIMARY ? currentSpell.Config.primaryAbility : currentSpell.Config.secondaryAbility;
+        var spellAbility = slot == global::Slot.PRIMARY ? currentSpell.Config.primaryAbility : currentSpell.Config.secondaryAbility;
 
         animator.Play(spellAbility.animation);
-        SpellSlots.Instance.GetButton(button).TriggerCooldown(spellAbility.cooldown);
+        SpellSlots.Instance.GetButton(slot).TriggerCooldown(spellAbility.cooldown);
         yield return new WaitForSeconds(spellAbility.castDelay);
 
-        if (button == global::Slot.PRIMARY)
+        if (slot == global::Slot.PRIMARY)
         {
             currentSpell.CastSpell();
         }
@@ -113,6 +113,6 @@ public class SpellManager : MonoBehaviour
 
         yield return new WaitForSeconds(spellAbility.cooldown - spellAbility.castDelay);
 
-        currentSpell.Unlock();
+        currentSpell.Unlock(slot);
     }
 }

@@ -10,8 +10,7 @@ public class Spell : MonoBehaviour
 
     protected SpellManager manager;
 
-    private bool isUsable = true;
-    public bool IsUsable { get { return isUsable; } }
+    private bool[] isOnCooldown = new bool[(int)global::Slot.MAX];
 
     public void Init(SpellConfig config, SpellManager manager)
     {
@@ -19,8 +18,9 @@ public class Spell : MonoBehaviour
         this.manager = manager;
     }
 
-    public void Lock() { isUsable = false; }
-    public void Unlock() { isUsable = true; }
+    public void Lock(Slot slot) { isOnCooldown[(int)slot] = true; }
+    public void Unlock(Slot slot) { isOnCooldown[(int)slot] = false; }
+    public bool IsUsable(Slot slot) { return !isOnCooldown[(int)slot]; }
 
 
     public virtual void PrepareSpell() { }
