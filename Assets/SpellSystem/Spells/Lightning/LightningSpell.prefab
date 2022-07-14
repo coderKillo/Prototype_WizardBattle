@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightningBoltPrefab: {fileID: 106988, guid: e6a68dd86265cf441a55e07f9256f785, type: 3}
-  hitDistance: 1000
+  maxHitDistance: 1000
+  damage: 50
+  lightningDuration: 0.2
   hitMask:
     serializedVersion: 2
     m_Bits: 256
+  coinPrefab: {fileID: 5551311412004314036, guid: 683fbe5db70470a43ba6b096740ac83b, type: 3}
+  coinTossForce: {x: 0, y: 50, z: 2000}

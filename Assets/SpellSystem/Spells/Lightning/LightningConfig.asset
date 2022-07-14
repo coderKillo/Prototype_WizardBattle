@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: LightningConfig
   m_EditorClassIdentifier: 
   spellName: Lightning
-  wandGlowColor: {r: 0, g: 10.289025, b: 17.148375, a: 0}
-  spell: {fileID: 0}
+  wandGlowColor: {r: 0, g: 10.289025, b: 17.148375, a: 1}
+  spell: {fileID: 1168599306290813152, guid: e939f9c2106190f4fa1e112bb0635249, type: 3}
   primaryAbility:
-    cooldown: 2
+    cooldown: 1
     icon: {fileID: 21300000, guid: 2456dd2824f5ec540830760922f5bac6, type: 3}
-    animation: Attack2
-    castDelay: 0.2
+    animation: Attack2Long
+    castDelay: 0.35
   secondaryAbility:
     cooldown: 5
     icon: {fileID: 21300000, guid: c46d83f2b73aaa141bd5015819342d81, type: 3}
     animation: Attack2
-    castDelay: 0.2
+    castDelay: 0.4

@@ -2426,7 +2426,6 @@ GameObject:
   - component: {fileID: 4215889442368933369}
   - component: {fileID: 1204177765}
   - component: {fileID: 6300122215583400552}
-  - component: {fileID: 4981840104166556599}
   m_Layer: 6
   m_Name: FirstPersonController
   m_TagString: Player
@@ -2606,19 +2605,6 @@ MonoBehaviour:
   health: 0
   maxHealth: 200
   slider: {fileID: 0}
---- !u!114 &4981840104166556599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4215889442368933367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8305f02ce36b9a4baa20876b5a399d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverUI: {fileID: 0}
 --- !u!1 &4215889442431320693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,6 +2714,14 @@ PrefabInstance:
     - target: {fileID: 6856042985545656572, guid: b387cb874997c2f4cb30c5682a184b03, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667703727364123707, guid: b387cb874997c2f4cb30c5682a184b03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667703727364123707, guid: b387cb874997c2f4cb30c5682a184b03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b387cb874997c2f4cb30c5682a184b03, type: 3}
