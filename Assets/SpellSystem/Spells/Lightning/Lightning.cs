@@ -48,16 +48,14 @@ public class Lightning : Spell
 
         Destroy(lightningBolt, lightningDuration);
 
-        StartCoroutine(nameof(DamageEnemy), target);
+        DamageEnemy(target);
     }
 
 
-    private IEnumerator DamageEnemy(GameObject enemy)
+    private void DamageEnemy(GameObject enemy)
     {
-        yield return new WaitForSeconds(config.primaryAbility.castDelay);
-
         if (enemy == null)
-            yield break;
+            return;
 
         var enemyHealth = enemy.GetComponent<EnemyHealth>();
         if (enemyHealth)

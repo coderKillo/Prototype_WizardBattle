@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +12,9 @@ public class EnemyAI : MonoBehaviour
     private Transform target;
     private float distanceToTarget = Mathf.Infinity;
     private bool isProvoked = false;
+
+    [Header("Patrolling")]
+    private float patrolRadius = 5f;
 
     void Start()
     {
@@ -41,13 +41,28 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                CaseTarget();
+                CaseTarget(target.position);
             }
         }
         else if (IsCaseRange())
         {
             isProvoked = true;
         }
+        else if (!IsPatrolling())
+        {
+            CaseTarget(GetRandomPosition(patrolRadius));
+        }
+    }
+
+    private bool IsPatrolling()
+    {
+        if (isProvoked)
+            return false;
+
+        if (agent.velocity.magnitude < 0.1f)
+            return false;
+
+        return true;
     }
 
     private void OnEnable()
@@ -70,12 +85,20 @@ public class EnemyAI : MonoBehaviour
         isProvoked = true;
     }
 
-    private void CaseTarget()
+    private Vector3 GetRandomPosition(float radius)
+    {
+        var pos = transform.position;
+        pos.x += Random.Range(-radius, radius);
+        pos.z += Random.Range(-radius, radius);
+        return pos;
+    }
+
+    private void CaseTarget(Vector3 targetPosition)
     {
         animator.SetBool("attack", false);
         animator.SetTrigger("move");
 
-        agent.SetDestination(target.position);
+        agent.SetDestination(targetPosition);
     }
 
     private void AttackTarget()
