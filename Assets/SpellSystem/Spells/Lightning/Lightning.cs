@@ -7,7 +7,7 @@ public class Lightning : Spell
 {
     [Header("Spell Parameter")]
     [SerializeField] private GameObject lightningBoltPrefab;
-    [SerializeField] private float maxHitDistance = 1000f;
+    [SerializeField] private float maxHitDistance = 25f;
     [SerializeField] private int damage = 50;
     [SerializeField] private float lightningDuration = 0.3f;
     [SerializeField] private LayerMask hitMask;
@@ -15,6 +15,7 @@ public class Lightning : Spell
     [Header("Coin")]
     [SerializeField] private GameObject coinPrefab;
     [SerializeField] private Vector3 coinTossForce;
+    [SerializeField] private float coinChainLightningRadius = 5f;
 
     public override void CastSpell()
     {
@@ -22,20 +23,41 @@ public class Lightning : Spell
         if (!Physics.Raycast(manager.AimDirection().position, manager.AimDirection().TransformDirection(Vector3.forward), out hit, maxHitDistance, hitMask))
             return;
 
+        CreateLightningBolt(manager.SpellSource().gameObject, hit.collider.gameObject);
+
+        if (hit.collider.GetComponent<Coin>() != null)
+        {
+            Collider[] hitColliders = Physics.OverlapSphere(hit.collider.transform.position, coinChainLightningRadius);
+            foreach (var hitCollider in hitColliders)
+            {
+                if (hitCollider.GetComponent<EnemyHealth>() != null)
+                {
+                    CreateLightningBolt(hit.collider.gameObject, hitCollider.gameObject);
+                }
+            }
+        }
+    }
+
+    private void CreateLightningBolt(GameObject source, GameObject target)
+    {
         var lightningBolt = GameObject.Instantiate(lightningBoltPrefab, Vector3.zero, Quaternion.identity, transform);
 
         var lightningBoltScript = lightningBolt.GetComponent<LightningBoltScript>();
-        lightningBoltScript.StartObject = manager.SpellSource().gameObject;
-        lightningBoltScript.EndObject = hit.collider.gameObject;
+        lightningBoltScript.StartObject = source;
+        lightningBoltScript.EndObject = target;
 
         Destroy(lightningBolt, lightningDuration);
 
-        StartCoroutine(nameof(DamageEnemy), hit.collider.gameObject);
+        StartCoroutine(nameof(DamageEnemy), target);
     }
+
 
     private IEnumerator DamageEnemy(GameObject enemy)
     {
         yield return new WaitForSeconds(config.primaryAbility.castDelay);
+
+        if (enemy == null)
+            yield break;
 
         var enemyHealth = enemy.GetComponent<EnemyHealth>();
         if (enemyHealth)
