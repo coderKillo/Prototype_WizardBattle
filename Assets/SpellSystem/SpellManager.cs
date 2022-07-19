@@ -124,9 +124,11 @@ public class SpellManager : MonoBehaviour
             yield break;
         }
 
-        currentSpell.Lock(slot);
+        var spell = currentSpell;
 
-        var spellAbility = slot == global::Slot.PRIMARY ? currentSpell.Config.primaryAbility : currentSpell.Config.secondaryAbility;
+        spell.Lock(slot);
+
+        var spellAbility = slot == global::Slot.PRIMARY ? spell.Config.primaryAbility : spell.Config.secondaryAbility;
 
         animator.Play(spellAbility.animation);
         SpellSlots.Instance.GetButton(slot).TriggerCooldown(spellAbility.cooldown);
@@ -134,15 +136,15 @@ public class SpellManager : MonoBehaviour
 
         if (slot == global::Slot.PRIMARY)
         {
-            currentSpell.CastSpell();
+            spell.CastSpell();
         }
         else
         {
-            currentSpell.CastSpellSecondary();
+            spell.CastSpellSecondary();
         }
 
         yield return new WaitForSeconds(spellAbility.cooldown - spellAbility.castDelay);
 
-        currentSpell.Unlock(slot);
+        spell.Unlock(slot);
     }
 }
