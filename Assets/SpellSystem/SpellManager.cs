@@ -107,9 +107,6 @@ public class SpellManager : MonoBehaviour
         currentSpellIndex = index;
 
         wand.SetGlowColor(currentSpell.Config.wandGlowColor);
-
-        SpellSlots.Instance.GetButton(global::Slot.PRIMARY).SetIcon(currentSpell.Config.primaryAbility.icon);
-        SpellSlots.Instance.GetButton(global::Slot.SECONDARY).SetIcon(currentSpell.Config.secondaryAbility.icon);
     }
 
     private IEnumerator CastSpell(Slot slot)
@@ -126,12 +123,12 @@ public class SpellManager : MonoBehaviour
 
         var spell = currentSpell;
 
-        spell.Lock(slot);
+        spell.TriggerCooldown(slot);
 
         var spellAbility = slot == global::Slot.PRIMARY ? spell.Config.primaryAbility : spell.Config.secondaryAbility;
 
         animator.Play(spellAbility.animation);
-        SpellSlots.Instance.GetButton(slot).TriggerCooldown(spellAbility.cooldown);
+
         yield return new WaitForSeconds(spellAbility.castDelay);
 
         if (slot == global::Slot.PRIMARY)
@@ -142,9 +139,13 @@ public class SpellManager : MonoBehaviour
         {
             spell.CastSpellSecondary();
         }
+    }
 
-        yield return new WaitForSeconds(spellAbility.cooldown - spellAbility.castDelay);
-
-        spell.Unlock(slot);
+    private void Update()
+    {
+        foreach (var spell in spells)
+        {
+            spell.HandleCooldown(Time.deltaTime);
+        }
     }
 }

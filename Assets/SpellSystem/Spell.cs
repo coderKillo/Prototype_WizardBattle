@@ -10,17 +10,32 @@ public class Spell : MonoBehaviour
 
     protected SpellManager manager;
 
-    private bool[] isOnCooldown = new bool[(int)global::Slot.MAX];
+    private float[] cooldownTimer = new float[(int)global::Slot.MAX];
+    private float[] cooldown = new float[(int)global::Slot.MAX];
 
     public void Init(SpellConfig config, SpellManager manager)
     {
         this.config = config;
         this.manager = manager;
+
+        cooldown[(int)Slot.PRIMARY] = config.primaryAbility.cooldown;
+        cooldown[(int)Slot.SECONDARY] = config.secondaryAbility.cooldown;
     }
 
-    public void Lock(Slot slot) { isOnCooldown[(int)slot] = true; }
-    public void Unlock(Slot slot) { isOnCooldown[(int)slot] = false; }
-    public bool IsUsable(Slot slot) { return !isOnCooldown[(int)slot]; }
+    public void TriggerCooldown(Slot slot) { cooldownTimer[(int)slot] = cooldown[(int)slot]; }
+    public float CooldownTimer(Slot slot) { return cooldownTimer[(int)slot]; }
+    public void HandleCooldown(float deltaTime)
+    {
+        for (int i = 0; i < cooldownTimer.Length; i++)
+        {
+            if (cooldownTimer[i] > 0)
+            {
+                cooldownTimer[i] -= deltaTime;
+            }
+        }
+    }
+
+    public bool IsUsable(Slot slot) { return cooldownTimer[(int)slot] <= 0; }
 
 
     public virtual void PrepareSpell() { }
@@ -32,12 +47,7 @@ public class Spell : MonoBehaviour
 
     public bool SpellHitTarget(out RaycastHit hit, LayerMask mask)
     {
-        if (Physics.Raycast(manager.AimDirection().position, manager.AimDirection().TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask))
-        {
-            return true;
-        }
-
-        return false;
+        return Physics.Raycast(manager.AimDirection().position, manager.AimDirection().TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask);
     }
 
 }

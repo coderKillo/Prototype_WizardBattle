@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,53 +7,39 @@ using UnityEngine.UI;
 public class SpellButton : MonoBehaviour
 {
     [SerializeField] private Image icon;
+    [SerializeField] private SpellManager manager;
+    [SerializeField] private Slot slot;
 
     private Slider cooldownSlider;
-    private float cooldownTime;
-    private bool isCooldown;
+    private int index = -1;
 
     private void Start()
     {
         cooldownSlider = GetComponent<Slider>();
     }
 
-    public void SetIcon(Sprite sprite)
-    {
-        icon.sprite = sprite;
-    }
-
-    public void TriggerCooldown(float cooldown)
-    {
-        if (isCooldown)
-        {
-            return;
-        }
-
-        cooldownTime = cooldown;
-        isCooldown = true;
-
-        cooldownSlider.maxValue = cooldown;
-        cooldownSlider.value = cooldown;
-    }
-
     private void Update()
     {
-        HandleCooldown();
+        if (SlotChanged())
+        {
+            index = manager.CurrentSpellIndex;
+
+            icon.sprite = GetCurrentSpellAbility().icon;
+
+            cooldownSlider.maxValue = GetCurrentSpellAbility().cooldown;
+            cooldownSlider.value = GetCurrentSpellAbility().cooldown;
+        }
+
+        cooldownSlider.value = manager.CurrentSpell.CooldownTimer(slot);
     }
 
-    private void HandleCooldown()
+    private bool SlotChanged()
     {
-        if (!isCooldown)
-        {
-            return;
-        }
+        return manager.CurrentSpellIndex != index;
+    }
 
-        cooldownTime -= Time.deltaTime;
-        cooldownSlider.value = cooldownTime;
-
-        if (cooldownTime <= 0)
-        {
-            isCooldown = false;
-        }
+    private SpellAbility GetCurrentSpellAbility()
+    {
+        return slot == Slot.PRIMARY ? manager.CurrentSpell.Config.primaryAbility : manager.CurrentSpell.Config.secondaryAbility;
     }
 }
