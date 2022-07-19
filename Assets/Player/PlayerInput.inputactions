@@ -76,6 +76,46 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Slot2",
+                    "type": "Button",
+                    "id": "dbae4ab4-c44d-4564-98ec-803acba78297",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Slot3",
+                    "type": "Button",
+                    "id": "8c2177d0-c7e6-455b-9a45-cb421ffab9df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Slot4",
+                    "type": "Button",
+                    "id": "ed4c418a-0484-4027-a0be-bbe7528838ec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Slot5",
+                    "type": "Button",
+                    "id": "a3a7d88b-fcde-4bc8-9a97-8bf199b6cc54",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "NextSlot",
+                    "type": "PassThrough",
+                    "id": "85419943-6bf2-41da-8430-fc2f667064b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -362,6 +402,61 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "FireSecondary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4642c27c-afd1-4e0a-bf7b-8b45f6c14dbd",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Slot2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3f67dac-ec8f-49f5-b530-3cca75a30df4",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Slot3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c78f3df2-07e3-430b-b909-9b31a46a7c9d",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Slot4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e8ac1c5-bc47-4ff1-afaa-a17093d6bf4e",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Slot5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbb01a02-4960-4649-aa83-f09daecd80e6",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "NextSlot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

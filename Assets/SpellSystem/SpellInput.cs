@@ -37,6 +37,18 @@ public class SpellInput : MonoBehaviour
         manager.FireSecondary();
     }
 
+    private void OnNextSlot(InputValue value)
+    {
+        if (value.Get<float>() > 0)
+        {
+            manager.NextSlot();
+        }
+        else if (value.Get<float>() < 0)
+        {
+            manager.PreviousSlot();
+        }
+    }
+
     private void OnSlot0(InputValue value)
     {
         manager.ChangeSlot(0);
@@ -45,5 +57,25 @@ public class SpellInput : MonoBehaviour
     private void OnSlot1(InputValue value)
     {
         manager.ChangeSlot(1);
+    }
+
+    private void OnSlot2(InputValue value)
+    {
+        manager.ChangeSlot(2);
+    }
+
+    private void OnSlot3(InputValue value)
+    {
+        manager.ChangeSlot(3);
+    }
+
+    private void OnSlot4(InputValue value)
+    {
+        manager.ChangeSlot(4);
+    }
+
+    private void OnSlot5(InputValue value)
+    {
+        manager.ChangeSlot(5);
     }
 }

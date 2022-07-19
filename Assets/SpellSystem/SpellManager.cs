@@ -19,6 +19,9 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private SpellConfig[] spellConfigs;
     private Spell[] spells;
 
+    private int currentSpellIndex = 0;
+    public int CurrentSpellIndex { get { return currentSpellIndex; } }
+
     private Spell currentSpell = null;
     public Spell CurrentSpell { get { return currentSpell; } }
 
@@ -52,7 +55,9 @@ public class SpellManager : MonoBehaviour
 
     public void FirePrimaryCanceled()
     {
-        if (currentSpell == null) return;
+        if (currentSpell == null)
+            return;
+
         currentSpell.CancelSpell();
     }
 
@@ -63,18 +68,43 @@ public class SpellManager : MonoBehaviour
 
     public void FireSecondaryCanceled()
     {
-        if (currentSpell == null) return;
+        if (currentSpell == null)
+            return;
+
         currentSpell.CancelSpellSecondary();
+    }
+
+    public void NextSlot()
+    {
+        var nextIndex = currentSpellIndex + 1;
+        if (nextIndex >= spells.Length)
+        {
+            nextIndex = 0;
+        }
+
+        ChangeSlot(nextIndex);
+    }
+
+    public void PreviousSlot()
+    {
+        var previousIndex = currentSpellIndex - 1;
+        if (previousIndex < 0)
+        {
+            previousIndex = spells.Length - 1;
+        }
+
+        ChangeSlot(previousIndex);
     }
 
     public void ChangeSlot(int index)
     {
-        if (index >= spells.Length)
+        if (index >= spells.Length || index < 0)
         {
             return;
         }
 
         currentSpell = spells[index];
+        currentSpellIndex = index;
 
         wand.SetGlowColor(currentSpell.Config.wandGlowColor);
 
