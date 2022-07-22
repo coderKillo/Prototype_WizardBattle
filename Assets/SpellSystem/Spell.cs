@@ -50,4 +50,22 @@ public class Spell : MonoBehaviour
         return Physics.Raycast(manager.AimDirection().position, manager.AimDirection().TransformDirection(Vector3.forward), out hit, Mathf.Infinity, mask);
     }
 
+    protected Vector3 GetTarget(LayerMask mask)
+    {
+        RaycastHit hit;
+        Vector3 target;
+
+        if (SpellHitTarget(out hit, mask))
+        {
+            target = hit.point;
+        }
+        else
+        {
+            var direction = manager.AimDirection();
+            target = direction.position + direction.forward * 1000f;
+        }
+
+        return target;
+    }
+
 }

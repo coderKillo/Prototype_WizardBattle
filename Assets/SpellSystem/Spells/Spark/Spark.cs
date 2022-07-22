@@ -27,7 +27,7 @@ public class Spark : Spell
     public override void CastSpell()
     {
         var missile = GameObject.Instantiate(missilePrefab, manager.SpellSource().position, Quaternion.identity, transform);
-        missile.transform.LookAt(GetTarget());
+        missile.transform.LookAt(GetTarget(hitMask));
 
         var projectile = missile.AddComponent<Projectile>();
         projectile.Speed = speed;
@@ -57,26 +57,8 @@ public class Spark : Spell
 
             projectile.Speed = speed;
 
-            missile.transform.LookAt(GetTarget());
+            missile.transform.LookAt(GetTarget(hitMask));
         }
-    }
-
-    private Vector3 GetTarget()
-    {
-        RaycastHit hit;
-        Vector3 target;
-
-        if (SpellHitTarget(out hit, hitMask))
-        {
-            target = hit.point;
-        }
-        else
-        {
-            var direction = manager.AimDirection();
-            target = direction.position + direction.forward * 1000f;
-        }
-
-        return target;
     }
 
     private void DestroyMissile(GameObject missile)
