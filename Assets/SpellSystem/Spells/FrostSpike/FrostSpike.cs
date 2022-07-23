@@ -51,6 +51,9 @@ public class FrostSpike : Spell
 
     private void OnDestroySpike(GameObject missile)
     {
+        if (missile == null)
+            return;
+
         var explosion = GameObject.Instantiate(explosionPrefab, missile.transform.position, Quaternion.identity);
         Destroy(explosion, 1f);
     }
@@ -65,14 +68,14 @@ public class FrostSpike : Spell
         {
             enemyHealth.Damage(damage);
 
-            // if (enemyHealth.IsDead())
-            // {
-            //     var rigidbody = hit.transform.GetComponent<Rigidbody>();
-            //     if (rigidbody)
-            //     {
-            //         rigidbody.AddForce(missile.transform.forward * 1000f);
-            //     }
-            // }
+            if (enemyHealth.IsDead())
+            {
+                var rigidbody = hit.transform.GetComponent<Rigidbody>();
+                if (rigidbody)
+                {
+                    rigidbody.AddForce(missile.transform.forward * 2000f);
+                }
+            }
         }
     }
 

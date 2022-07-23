@@ -9,31 +9,38 @@ public class EnemyAI : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator animator;
+    private Rigidbody rigidbody;
     private Transform target;
     private float distanceToTarget = Mathf.Infinity;
     private bool isProvoked = false;
+    private bool isDead = false;
 
     [Header("Patrolling")]
     private float patrolRadius = 5f;
 
-    void Start()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        agent.stoppingDistance = attackDistance;
+        rigidbody = GetComponent<Rigidbody>();
 
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             target = player.transform;
         }
+
     }
 
     void Update()
     {
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
-        if (isProvoked)
+        if (isDead)
+        {
+
+        }
+        else if (isProvoked)
         {
             if (IsAttackRange())
             {
@@ -68,6 +75,11 @@ public class EnemyAI : MonoBehaviour
     private void OnEnable()
     {
         isProvoked = false;
+        isDead = false;
+
+        agent.enabled = true;
+        animator.enabled = true;
+        rigidbody.useGravity = false;
     }
 
     private bool IsCaseRange()
@@ -83,6 +95,22 @@ public class EnemyAI : MonoBehaviour
     private void OnDamageTaken()
     {
         isProvoked = true;
+    }
+
+    private void OnDeath()
+    {
+        isDead = true;
+
+        agent.enabled = false;
+        animator.enabled = false;
+        rigidbody.useGravity = true;
+
+        Invoke(nameof(DisableEnemy), 2f);
+    }
+
+    private void DisableEnemy()
+    {
+        gameObject.SetActive(false);
     }
 
     private Vector3 GetRandomPosition(float radius)

@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     static public event Action OnDeath;
 
     private int m_currentHitpoints = 0;
+    public int Hitpoints { get { return m_currentHitpoints; } }
 
     void OnEnable()
     {
@@ -33,11 +34,13 @@ public class EnemyHealth : MonoBehaviour
 
         slider.value = m_currentHitpoints;
 
-        if (m_currentHitpoints <= 0)
+        if (IsDead())
         {
-            gameObject.SetActive(false);
+            BroadcastMessage("OnDeath");
             OnDeath?.Invoke();
         }
     }
+
+    public bool IsDead() => m_currentHitpoints <= 0;
 }
 
