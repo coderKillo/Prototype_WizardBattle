@@ -44,7 +44,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spikePrefab: {fileID: 1550477657380252, guid: 78cd5187d076aa54b9c441bf03c1507f, type: 3}
+  explosionPrefab: {fileID: 153912, guid: 9615ca6f8f649f1478ff744fdb7fa412, type: 3}
   speed: 2000
+  spikeLifetime: 10
+  spellBaseDamage: 10
+  spellHoldDamageFactor: 25
+  spellHoldScaleFactor: 0.5
+  spellMaxDamage: 100
   hitMask:
     serializedVersion: 2
     m_Bits: 256

@@ -50,7 +50,7 @@ public class SpellManager : MonoBehaviour
 
     public void FirePrimary()
     {
-        StartCoroutine("CastSpell", global::Slot.PRIMARY);
+        CastSpell(global::Slot.PRIMARY);
     }
 
     public void FirePrimaryCanceled()
@@ -63,7 +63,7 @@ public class SpellManager : MonoBehaviour
 
     public void FireSecondary()
     {
-        StartCoroutine("CastSpell", global::Slot.SECONDARY);
+        CastSpell(global::Slot.SECONDARY);
     }
 
     public void FireSecondaryCanceled()
@@ -99,9 +99,7 @@ public class SpellManager : MonoBehaviour
     public void ChangeSlot(int index)
     {
         if (index >= spells.Length || index < 0)
-        {
             return;
-        }
 
         currentSpell = spells[index];
         currentSpellIndex = index;
@@ -109,35 +107,26 @@ public class SpellManager : MonoBehaviour
         wand.SetGlowColor(currentSpell.Config.wandGlowColor);
     }
 
-    private IEnumerator CastSpell(Slot slot)
+    private void CastSpell(Slot slot)
     {
         if (currentSpell == null)
-        {
-            yield break;
-        }
+            return;
 
         if (!currentSpell.IsUsable(slot))
-        {
-            yield break;
-        }
+            return;
 
-        var spell = currentSpell;
+        var spellAbility = slot == global::Slot.PRIMARY ? currentSpell.Config.primaryAbility : currentSpell.Config.secondaryAbility;
 
-        spell.TriggerCooldown(slot);
-
-        var spellAbility = slot == global::Slot.PRIMARY ? spell.Config.primaryAbility : spell.Config.secondaryAbility;
-
+        currentSpell.TriggerCooldown(slot);
         animator.Play(spellAbility.animation);
-
-        yield return new WaitForSeconds(spellAbility.castDelay);
 
         if (slot == global::Slot.PRIMARY)
         {
-            spell.CastSpell();
+            currentSpell.Invoke("CastSpell", spellAbility.castDelay);
         }
         else
         {
-            spell.CastSpellSecondary();
+            currentSpell.Invoke("CastSpellSecondary", spellAbility.castDelay);
         }
     }
 
