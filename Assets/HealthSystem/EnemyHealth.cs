@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
         m_currentHitpoints = maxHitpoints;
         slider.maxValue = maxHitpoints;
         slider.value = maxHitpoints;
+        slider.gameObject.SetActive(true);
 
         OnSpawn?.Invoke();
     }
@@ -38,6 +39,7 @@ public class EnemyHealth : MonoBehaviour
         {
             BroadcastMessage("OnDeath");
             OnDeath?.Invoke();
+            slider.gameObject.SetActive(false);
         }
     }
 

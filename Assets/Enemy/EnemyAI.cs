@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator animator;
+    private Collider collider;
     private Transform target;
     private float distanceToTarget = Mathf.Infinity;
     private bool isProvoked = false;
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        collider = GetComponent<Collider>();
 
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -36,10 +38,9 @@ public class EnemyAI : MonoBehaviour
         distanceToTarget = Vector3.Distance(target.position, transform.position);
 
         if (isDead)
-        {
+            return;
 
-        }
-        else if (isProvoked)
+        if (isProvoked)
         {
             if (IsAttackRange())
             {
@@ -75,6 +76,9 @@ public class EnemyAI : MonoBehaviour
     {
         isProvoked = false;
         isDead = false;
+
+        agent.isStopped = false;
+        collider.enabled = true;
     }
 
     private bool IsCaseRange()
@@ -95,8 +99,11 @@ public class EnemyAI : MonoBehaviour
     private void OnDeath()
     {
         isDead = true;
+
+        agent.isStopped = true;
+        collider.enabled = false;
+
         animator.Play("Dead");
-        Invoke(nameof(DisableEnemy), 1f);
     }
 
     private void DisableEnemy()
