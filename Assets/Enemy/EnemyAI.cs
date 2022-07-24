@@ -7,10 +7,11 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float caseDistance = 10f;
     [SerializeField] private float attackDistance = 2f;
+    public float AttackDistance { get { return attackDistance; } }
 
     private NavMeshAgent agent;
     private Animator animator;
-    private Collider collider;
+    private Collider enemyCollider;
     private Transform target;
     private float distanceToTarget = Mathf.Infinity;
     private bool isProvoked = false;
@@ -23,7 +24,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        collider = GetComponent<Collider>();
+        enemyCollider = GetComponent<Collider>();
 
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -78,7 +79,7 @@ public class EnemyAI : MonoBehaviour
         isDead = false;
 
         agent.isStopped = false;
-        collider.enabled = true;
+        enemyCollider.enabled = true;
     }
 
     private bool IsCaseRange()
@@ -101,7 +102,7 @@ public class EnemyAI : MonoBehaviour
         isDead = true;
 
         agent.isStopped = true;
-        collider.enabled = false;
+        enemyCollider.enabled = false;
 
         animator.Play("Dead");
     }
