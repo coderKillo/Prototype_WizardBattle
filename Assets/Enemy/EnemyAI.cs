@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Animator))]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float caseDistance = 10f;
@@ -9,7 +10,6 @@ public class EnemyAI : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator animator;
-    private Rigidbody rigidbody;
     private Transform target;
     private float distanceToTarget = Mathf.Infinity;
     private bool isProvoked = false;
@@ -22,7 +22,6 @@ public class EnemyAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody>();
 
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -76,10 +75,6 @@ public class EnemyAI : MonoBehaviour
     {
         isProvoked = false;
         isDead = false;
-
-        agent.enabled = true;
-        animator.enabled = true;
-        rigidbody.useGravity = false;
     }
 
     private bool IsCaseRange()
@@ -100,12 +95,8 @@ public class EnemyAI : MonoBehaviour
     private void OnDeath()
     {
         isDead = true;
-
-        agent.enabled = false;
-        animator.enabled = false;
-        rigidbody.useGravity = true;
-
-        Invoke(nameof(DisableEnemy), 2f);
+        animator.Play("Dead");
+        Invoke(nameof(DisableEnemy), 1f);
     }
 
     private void DisableEnemy()
