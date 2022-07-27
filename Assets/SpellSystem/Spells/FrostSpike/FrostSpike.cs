@@ -61,7 +61,10 @@ public class FrostSpike : Spell
     private void OnSpikeHit(GameObject missile, RaycastHit hit, int damage)
     {
         var projectile = missile.GetComponent<Projectile>();
-        projectile.DestroyMissile();
+        if (projectile)
+        {
+            projectile.DestroyMissile();
+        }
 
         var enemyHealth = hit.transform.GetComponent<EnemyHealth>();
         if (enemyHealth)
