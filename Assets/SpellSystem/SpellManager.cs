@@ -1,6 +1,7 @@
 using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,8 @@ public class SpellManager : MonoBehaviour
     private Spell currentSpell = null;
     public Spell CurrentSpell { get { return currentSpell; } }
 
+    MMFeedbacks feedback;
+
     private void Awake()
     {
         spells = new Spell[spellConfigs.Length];
@@ -46,6 +49,8 @@ public class SpellManager : MonoBehaviour
         {
             SpellSlots.Instance.SetSlotColor(spellConfigs[i].wandGlowColor, i);
         }
+
+        feedback = GetComponent<MMFeedbacks>();
     }
 
     public void FirePrimary()
@@ -128,6 +133,8 @@ public class SpellManager : MonoBehaviour
         {
             currentSpell.Invoke("CastSpellSecondary", spellAbility.castDelay);
         }
+
+        feedback.Invoke("PlayFeedbacks", spellAbility.castDelay);
     }
 
     private void Update()
