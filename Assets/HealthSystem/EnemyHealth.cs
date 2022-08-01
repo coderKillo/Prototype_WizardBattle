@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
         m_currentHitpoints = maxHitpoints;
         slider.maxValue = maxHitpoints;
         slider.value = maxHitpoints;
-        slider.gameObject.SetActive(true);
+        slider.gameObject.SetActive(false);
 
         OnSpawn?.Invoke();
     }
@@ -34,6 +34,11 @@ public class EnemyHealth : MonoBehaviour
         m_currentHitpoints -= damage;
 
         slider.value = m_currentHitpoints;
+
+        if (m_currentHitpoints < maxHitpoints)
+        {
+            slider.gameObject.SetActive(true);
+        }
 
         if (IsDead())
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class FrostSpike : Spell
 {
@@ -15,9 +16,15 @@ public class FrostSpike : Spell
     [SerializeField] private int spellMaxDamage = 100;
     [SerializeField] private LayerMask hitMask;
 
+    private MMFeedbacks feedbacks;
     private GameObject spike;
     private float spellDamage;
     private bool holdSpell = false;
+
+    private void Awake()
+    {
+        feedbacks = GetComponent<MMFeedbacks>();
+    }
 
     public override void CastSpell()
     {
@@ -45,6 +52,8 @@ public class FrostSpike : Spell
         projectile.HitMask = hitMask;
         projectile.OnDestroyMissile.AddListener(() => OnDestroySpike(spike));
         projectile.OnHit.AddListener((hit) => OnSpikeHit(spike, hit, damage));
+
+        feedbacks.PlayFeedbacks();
 
         Destroy(spike, spikeLifetime);
     }

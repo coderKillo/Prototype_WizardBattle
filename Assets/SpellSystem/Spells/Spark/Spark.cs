@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class Spark : Spell
 {
@@ -17,11 +18,15 @@ public class Spark : Spell
     [SerializeField] GameObject missilePrefab;
     [SerializeField] GameObject explosionPrefab;
 
+    private MMFeedbacks feedbacks;
+
     private float speed = 0f;
 
     private void Awake()
     {
         speed = missileSpeed;
+
+        feedbacks = GetComponent<MMFeedbacks>();
     }
 
     public override void CastSpell()
@@ -34,6 +39,8 @@ public class Spark : Spell
         projectile.HitMask = hitMask;
         projectile.OnDestroyMissile.AddListener(() => DestroyMissile(missile));
         projectile.OnHit.AddListener((hit) => MissileHit(missile, hit));
+
+        feedbacks.PlayFeedbacks();
 
         Destroy(missile, missileLifetime);
     }

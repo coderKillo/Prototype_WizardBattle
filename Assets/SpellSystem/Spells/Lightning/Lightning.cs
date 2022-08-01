@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DigitalRuby.LightningBolt;
+using MoreMountains.Feedbacks;
 
 public class Lightning : Spell
 {
@@ -17,6 +18,13 @@ public class Lightning : Spell
     [SerializeField] private Vector3 coinTossForce;
     [SerializeField] private float coinChainLightningRadius = 5f;
 
+    private MMFeedbacks feedbacks;
+
+    private void Awake()
+    {
+        feedbacks = GetComponent<MMFeedbacks>();
+    }
+
     public override void CastSpell()
     {
         RaycastHit hit;
@@ -24,6 +32,8 @@ public class Lightning : Spell
             return;
 
         CreateLightningBolt(manager.SpellSource().gameObject, hit.collider.gameObject);
+
+        feedbacks.PlayFeedbacks();
 
         if (hit.collider.GetComponent<Coin>() != null)
         {
