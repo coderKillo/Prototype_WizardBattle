@@ -19,6 +19,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField][Range(0f, 0.1f)] private float threshold = 0.01f;
     [SerializeField][Range(0f, 90f)] private float maxSlopeAngle = 35f;
     private bool cancellingGrounded;
+    public bool IsGrounded { get { return grounded; } }
 
     [Header("Rotation and Rook")]
     [SerializeField] private float sensitivity = 50f;
