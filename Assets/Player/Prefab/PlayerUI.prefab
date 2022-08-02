@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 693944413771469163}
   - component: {fileID: 8054672634173223757}
   - component: {fileID: 6323507379937862575}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 751098406317166709}
   - component: {fileID: 7313669367696099439}
   - component: {fileID: 3687101708401540959}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6078923578242917754}
   - component: {fileID: 5618893110444421548}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 5899029122559367659}
   - component: {fileID: 5899029122559367657}
   - component: {fileID: 5899029122559367656}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 5899029122709389740}
   - component: {fileID: 5899029122709389738}
   - component: {fileID: 5899029122709389741}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 5899029122726029540}
   - component: {fileID: 5899029122726029538}
   - component: {fileID: 5899029122726029541}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 5899029122879196689}
   - component: {fileID: 5899029122879196703}
   - component: {fileID: 5899029122879196702}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 5899029122886839718}
   - component: {fileID: 5899029122886839716}
   - component: {fileID: 5899029122886839719}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 5899029122895352984}
   - component: {fileID: 5899029122895352998}
   - component: {fileID: 5899029122895352985}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 5899029122983077665}
   - component: {fileID: 5899029122983077679}
   - component: {fileID: 5899029122983077678}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -776,7 +776,7 @@ GameObject:
   - component: {fileID: 5899029123150556024}
   - component: {fileID: 5899029123150555782}
   - component: {fileID: 5899029123150556025}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +852,7 @@ GameObject:
   - component: {fileID: 5899029123345406661}
   - component: {fileID: 5899029123345406660}
   - component: {fileID: 5899029123345406663}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 5899029123410114557}
   - component: {fileID: 5899029123410114555}
   - component: {fileID: 5899029123410114554}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 5899029123416836918}
   - component: {fileID: 5899029123416836916}
   - component: {fileID: 5899029123416836919}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 5899029123947522505}
   - component: {fileID: 5899029123947522504}
   - component: {fileID: 5899029123947522507}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 34295
 --- !u!1 &5899029124225144945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 5899029124225144958}
   - component: {fileID: 5899029124225144956}
   - component: {fileID: 5899029124225144959}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellSlot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1277,7 +1277,7 @@ GameObject:
   - component: {fileID: 5899029124320313660}
   - component: {fileID: 5899029124320313658}
   - component: {fileID: 5899029124320313661}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SpellBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1350,7 +1350,7 @@ GameObject:
   - component: {fileID: 7953154094320390515}
   - component: {fileID: 377470826216588210}
   - component: {fileID: 8737470160676343299}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,7 +1484,7 @@ GameObject:
   - component: {fileID: 2857371191968010457}
   - component: {fileID: 6654290181334417225}
   - component: {fileID: 7361867131326327266}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1567,6 +1567,14 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4228366459045503344, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277253994092778434, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4277253994322050650, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_text
       value: LMB
@@ -1579,6 +1587,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4277253994322050652, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4277253994322050653, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_SizeDelta.x
       value: -10
@@ -1587,9 +1599,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4277253995501558732, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4277253995790771908, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_Name
       value: SpellButtonM1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277253995790771908, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4277253995790771909, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_Pivot.x
@@ -1712,6 +1732,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3050854127657639219, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: slot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228366459045503344, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277253994092778434, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4277253994322050650, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_text
       value: RMB
@@ -1724,6 +1756,10 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4277253994322050652, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4277253994322050653, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_SizeDelta.x
       value: -10
@@ -1732,9 +1768,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4277253995501558732, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4277253995790771908, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_Name
       value: SpellButtonM2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4277253995790771908, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4277253995790771909, guid: c4f56dab14cae8d47aae0ea23fe484a8, type: 3}
       propertyPath: m_Pivot.x

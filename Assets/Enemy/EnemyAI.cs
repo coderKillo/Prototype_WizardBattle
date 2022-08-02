@@ -6,8 +6,13 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private float caseDistance = 10f;
+    [SerializeField] private float speed = 5f;
     [SerializeField] private float attackDistance = 2f;
     public float AttackDistance { get { return attackDistance; } }
+
+    [Header("Patrolling")]
+    [SerializeField] float patrolRadius = 5f;
+    [SerializeField] float patrolSpeed = 2f;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -17,8 +22,9 @@ public class EnemyAI : MonoBehaviour
     private bool isProvoked = false;
     private bool isDead = false;
 
-    [Header("Patrolling")]
-    private float patrolRadius = 5f;
+    private int animationAttack = Animator.StringToHash("attack");
+    private int animationRun = Animator.StringToHash("run");
+    private int animationMove = Animator.StringToHash("move");
 
     void Awake()
     {
@@ -79,6 +85,7 @@ public class EnemyAI : MonoBehaviour
         isDead = false;
 
         agent.isStopped = false;
+        agent.speed = patrolSpeed;
         enemyCollider.enabled = true;
     }
 
@@ -122,15 +129,17 @@ public class EnemyAI : MonoBehaviour
 
     private void CaseTarget(Vector3 targetPosition)
     {
-        animator.SetBool("attack", false);
-        animator.SetTrigger("move");
+        animator.SetBool(animationAttack, false);
+        animator.SetTrigger(animationMove);
+        animator.SetBool(animationRun, isProvoked);
 
+        agent.speed = isProvoked ? speed : patrolSpeed;
         agent.SetDestination(targetPosition);
     }
 
     private void AttackTarget()
     {
-        animator.SetBool("attack", true);
+        animator.SetBool(animationAttack, true);
     }
 
     void OnDrawGizmosSelected()

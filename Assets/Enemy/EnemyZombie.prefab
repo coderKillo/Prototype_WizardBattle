@@ -254,7 +254,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   caseDistance: 15
+  speed: 5
   attackDistance: 3
+  patrolRadius: 10
+  patrolSpeed: 0.3
 --- !u!114 &6829218217685329628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +285,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 40
-  attackDistance: 3
-  target: {fileID: 0}
 --- !u!114 &8469020654349086857
 MonoBehaviour:
   m_ObjectHideFlags: 0

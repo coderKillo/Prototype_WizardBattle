@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6749954953022915656}
   - component: {fileID: 6749954951542429487}
   - component: {fileID: 6749954951542429486}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MenuUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 34295
 --- !u!1 &6749954951555888057
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 6749954951555888006}
   - component: {fileID: 6749954951555888004}
   - component: {fileID: 6749954951555888007}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 6749954952029195515}
   - component: {fileID: 6749954952029195514}
   - component: {fileID: 6749954952029195517}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 6749954952080323283}
   - component: {fileID: 6749954952080323282}
   - component: {fileID: 6749954952080323285}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 6749954953449126193}
   - component: {fileID: 6749954953449126207}
   - component: {fileID: 6749954953449126206}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Headline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 6749954953657883264}
   - component: {fileID: 6749954953657883278}
   - component: {fileID: 6749954953657883265}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
