@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wand : MonoBehaviour
 {
-    [SerializeField] private Light light;
+    [SerializeField] private Light glowLight;
 
     private Renderer wandRenderer;
 
@@ -15,7 +15,7 @@ public class Wand : MonoBehaviour
 
     public void SetGlowColor(Color glowColor)
     {
-        light.color = glowColor;
+        glowLight.color = glowColor;
 
         wandRenderer.material.color = glowColor;
         wandRenderer.material.SetColor("_EmissionColor", glowColor);

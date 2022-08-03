@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider slider;
 
     static public event Action OnDeath;
+    static public event Action OnHit;
 
     void Start()
     {
@@ -23,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= value;
         slider.value = health;
+
+        OnHit?.Invoke();
 
         if (health <= 0)
         {

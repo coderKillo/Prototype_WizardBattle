@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameMenuHeadline;
 
     [SerializeField] private Canvas playerUI;
+    [SerializeField] private TextMeshProUGUI playerMessageText;
+    [SerializeField] private GameObject player;
 
     private GameState currentState;
     private int currentSceneIndex = 0;
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     private void PlayerDied()
     {
+        player.SetActive(false);
         ChangeState(GameState.GameOver);
     }
 
@@ -92,6 +95,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Play:
                 Show(playerUI, false);
+                StartCoroutine(PostMessageToPlayer("The undead has come upon us! Destroy them before they spread!", 5f));
                 break;
             case GameState.GameOver:
                 gameMenuHeadline.text = "You Died!";
@@ -128,4 +132,11 @@ public class GameManager : MonoBehaviour
         Cursor.visible = enableCursor;
     }
 
+    IEnumerator PostMessageToPlayer(String message, float time)
+    {
+        playerMessageText.text = message;
+        playerMessageText.enabled = true;
+        yield return new WaitForSeconds(time);
+        playerMessageText.enabled = false;
+    }
 }
